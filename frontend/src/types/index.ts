@@ -5,6 +5,31 @@
  * Central Domain Identifier: parcel_id
  */
 
+export type UserRole = 
+  | 'Administrator'
+  | 'Revenue Officer'
+  | 'Survey Officer'
+  | 'Citizen';
+
+export interface UserProfile {
+  id: string;
+  email: string;
+  full_name: string;
+  role: UserRole;
+  designation: string;
+  department: string;
+  jurisdiction: string;
+  avatar_url?: string;
+  phone?: string;
+}
+
+export interface AuthSession {
+  user: UserProfile;
+  token: string;
+  authenticated_at: string;
+  role: UserRole;
+}
+
 export type LandUseType = 
   | 'Agricultural'
   | 'Residential'
@@ -182,7 +207,7 @@ export interface AuditEntry {
   parcel_id: string; // Foreign key
   action: 'CREATED' | 'UPDATED' | 'MUTATION_REQUESTED' | 'RECORD_VERIFIED' | 'DISPUTE_FILED' | 'STATUS_CHANGED';
   performed_by: string;
-  user_role: 'Revenue Officer' | 'Tehsildar' | 'Surveyor' | 'Citizen' | 'System Automated';
+  user_role: UserRole | 'System Automated';
   timestamp: string;
   ip_address: string;
   changes_summary: string;
