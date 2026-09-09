@@ -155,12 +155,14 @@ export interface Document {
   parcel_id: string; // Foreign key
   title: string;
   document_type: DocumentType;
+  document_number: string; // Statutory or registration reference
   file_url: string;
   file_size_kb: number;
   mime_type: string;
   uploaded_at: string;
   verified_by: string;
   is_verified: boolean;
+  status: 'Verified' | 'Pending Verification' | 'Archived';
   blockchain_txn_hash?: string;
 }
 
