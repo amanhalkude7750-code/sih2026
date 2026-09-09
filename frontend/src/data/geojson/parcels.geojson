@@ -1,0 +1,162 @@
+{
+  "type": "FeatureCollection",
+  "name": "Latur_Parcels_Cadastral",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "P001",
+        "survey_number": "124/2",
+        "village": "Example Village",
+        "taluka": "Ausa",
+        "district": "Latur",
+        "area": 2.45,
+        "land_use": "Agricultural",
+        "status": "Active"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [76.5015, 18.2535],
+            [76.5035, 18.2538],
+            [76.5032, 18.2549],
+            [76.5011, 18.2546],
+            [76.5015, 18.2535]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "P002",
+        "survey_number": "88/1B",
+        "village": "Kavtha",
+        "taluka": "Ausa",
+        "district": "Latur",
+        "area": 1.15,
+        "land_use": "Commercial",
+        "status": "Pending Mutation"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [76.5178, 18.2608],
+            [76.5192, 18.2610],
+            [76.5189, 18.2618],
+            [76.5175, 18.2615],
+            [76.5178, 18.2608]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "P003",
+        "survey_number": "205/4",
+        "village": "Alanga",
+        "taluka": "Nilanga",
+        "district": "Latur",
+        "area": 3.80,
+        "land_use": "Agricultural",
+        "status": "Disputed"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [76.7530, 18.1240],
+            [76.7555, 18.1243],
+            [76.7551, 18.1262],
+            [76.7525, 18.1258],
+            [76.7530, 18.1240]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "P004",
+        "survey_number": "42/A",
+        "village": "Harangul",
+        "taluka": "Latur",
+        "district": "Latur",
+        "area": 0.75,
+        "land_use": "Residential",
+        "status": "Active"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [76.5342, 18.3975],
+            [76.5358, 18.3977],
+            [76.5356, 18.3985],
+            [76.5340, 18.3983],
+            [76.5342, 18.3975]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "P005",
+        "survey_number": "310/7",
+        "village": "Pangaon",
+        "taluka": "Renapur",
+        "district": "Latur",
+        "area": 5.20,
+        "land_use": "Industrial",
+        "status": "Active"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [76.6195, 18.5505],
+            [76.6228, 18.5510],
+            [76.6222, 18.5535],
+            [76.6190, 18.5530],
+            [76.6195, 18.5505]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "P006",
+        "survey_number": "15/3",
+        "village": "Deoni",
+        "taluka": "Udgir",
+        "district": "Latur",
+        "area": 1.90,
+        "land_use": "Forest / Eco-Sensitive",
+        "status": "Locked"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [77.0085, 18.3085],
+            [77.0118, 18.3090],
+            [77.0112, 18.3115],
+            [77.0080, 18.3110],
+            [77.0085, 18.3085]
+          ]
+        ]
+      }
+    }
+  ]
+}

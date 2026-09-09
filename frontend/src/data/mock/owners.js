@@ -1,0 +1,127 @@
+/**
+ * Realistic Mock Owners Data
+ * Linked by parcel_id
+ */
+
+export const mockOwners = [
+  {
+    owner_id: "OWN-001",
+    parcel_id: "P001",
+    full_name: "Rameshwar Balaji Deshmukh",
+    guardian_name: "Balaji Deshmukh",
+    aadhaar_hash: "XXXXXXXX8942",
+    pan_number: "ABCDE1234F",
+    share_percentage: 60.0,
+    ownership_type: "Sole Owner",
+    contact_phone: "+91 98223 45671",
+    contact_email: "rameshwar.deshmukh@gmail.com",
+    address: "House No 45, Near Hanuman Temple, Example Village, Ausa, Latur",
+    is_primary: true,
+    acquired_date: "2015-06-12"
+  },
+  {
+    owner_id: "OWN-002",
+    parcel_id: "P001",
+    full_name: "Sunita Rameshwar Deshmukh",
+    guardian_name: "Rameshwar Deshmukh",
+    aadhaar_hash: "XXXXXXXX5512",
+    pan_number: "BCDEF5678G",
+    share_percentage: 40.0,
+    ownership_type: "Joint Tenancy",
+    contact_phone: "+91 98223 45672",
+    contact_email: "sunita.deshmukh@gmail.com",
+    address: "House No 45, Near Hanuman Temple, Example Village, Ausa, Latur",
+    is_primary: false,
+    acquired_date: "2015-06-12"
+  },
+  {
+    owner_id: "OWN-003",
+    parcel_id: "P002",
+    full_name: "Vikas Anandrao Patil",
+    guardian_name: "Anandrao Patil",
+    aadhaar_hash: "XXXXXXXX3190",
+    pan_number: "CDEFG9012H",
+    share_percentage: 100.0,
+    ownership_type: "Sole Owner",
+    contact_phone: "+91 94220 11982",
+    contact_email: "vikas.patil@commercialhub.in",
+    address: "Plot 12, Main Road, Kavtha, Ausa, Latur",
+    is_primary: true,
+    acquired_date: "2020-11-10"
+  },
+  {
+    owner_id: "OWN-004",
+    parcel_id: "P003",
+    full_name: "Dnyaneshwar Sopan Shinde",
+    guardian_name: "Sopan Shinde",
+    aadhaar_hash: "XXXXXXXX7723",
+    pan_number: "DEFGH3456I",
+    share_percentage: 50.0,
+    ownership_type: "Ancestral / Coparcenary",
+    contact_phone: "+91 98901 22334",
+    contact_email: "dnyaneshwar.shinde@rediffmail.com",
+    address: "Grampanchayat Galli, Alanga, Nilanga, Latur",
+    is_primary: true,
+    acquired_date: "2008-04-18"
+  },
+  {
+    owner_id: "OWN-005",
+    parcel_id: "P003",
+    full_name: "Sopan Manikrao Shinde",
+    guardian_name: "Manikrao Shinde",
+    aadhaar_hash: "XXXXXXXX1189",
+    pan_number: "EFGHI7890J",
+    share_percentage: 50.0,
+    ownership_type: "Ancestral / Coparcenary",
+    contact_phone: "+91 98901 22335",
+    contact_email: "sopan.shinde@rediffmail.com",
+    address: "Grampanchayat Galli, Alanga, Nilanga, Latur",
+    is_primary: false,
+    acquired_date: "2008-04-18"
+  },
+  {
+    owner_id: "OWN-006",
+    parcel_id: "P004",
+    full_name: "Priyanka Santosh Kulkarni",
+    guardian_name: "Santosh Kulkarni",
+    aadhaar_hash: "XXXXXXXX9901",
+    pan_number: "FGHIJ2345K",
+    share_percentage: 100.0,
+    ownership_type: "Sole Owner",
+    contact_phone: "+91 94233 88123",
+    contact_email: "priyanka.kulkarni@gmail.com",
+    address: "Flat 402, Sai Residency, Harangul Road, Latur",
+    is_primary: true,
+    acquired_date: "2022-01-05"
+  },
+  {
+    owner_id: "OWN-007",
+    parcel_id: "P005",
+    full_name: "Marathwada Agro-Infra Tech Pvt Ltd",
+    guardian_name: "Director: Rahul Jadhav",
+    aadhaar_hash: "XXXXXXXX0021",
+    pan_number: "AAACM8872L",
+    share_percentage: 100.0,
+    ownership_type: "Corporate Entity",
+    contact_phone: "+91 2382 245900",
+    contact_email: "compliance@marathwadaagro.com",
+    address: "MIDC Phase 2, Pangaon Road, Renapur, Latur",
+    is_primary: true,
+    acquired_date: "2018-05-19"
+  },
+  {
+    owner_id: "OWN-008",
+    parcel_id: "P006",
+    full_name: "State Forest & Environment Department",
+    guardian_name: "Divisional Forest Officer",
+    aadhaar_hash: "GOV-DEPT-9999",
+    pan_number: "GOVEX0001Z",
+    share_percentage: 100.0,
+    ownership_type: "Government Lease",
+    contact_phone: "+91 2385 221004",
+    contact_email: "dfo.udgir@mahaforest.gov.in",
+    address: "Forest Division Office, Deoni Range, Udgir, Latur",
+    is_primary: true,
+    acquired_date: "1985-01-01"
+  }
+];

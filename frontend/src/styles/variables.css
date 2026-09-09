@@ -1,0 +1,69 @@
+:root {
+  /* Color Palette - Premium GIS Slate & Emerald */
+  --bg-primary: #0b0f19;
+  --bg-secondary: #111827;
+  --bg-surface: #1e293b;
+  --bg-surface-hover: #283548;
+  --bg-surface-active: #334155;
+  --bg-glass: rgba(30, 41, 59, 0.7);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-focus: rgba(16, 185, 129, 0.5);
+
+  /* Primary Accent: Emerald / Land Green */
+  --primary-50: #ecfdf5;
+  --primary-100: #d1fae5;
+  --primary-400: #34d399;
+  --primary-500: #10b981;
+  --primary-600: #059669;
+  --primary-glow: rgba(16, 185, 129, 0.25);
+
+  /* Secondary Accent: Cyan / GIS Blue */
+  --accent-blue: #38bdf8;
+  --accent-indigo: #6366f1;
+  --accent-amber: #f59e0b;
+  --accent-rose: #f43f5e;
+  --accent-purple: #a855f7;
+
+  /* Typography Colors */
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  --text-inverse: #0b0f19;
+
+  /* Status Colors */
+  --status-active-bg: rgba(16, 185, 129, 0.12);
+  --status-active-text: #34d399;
+  --status-active-border: rgba(16, 185, 129, 0.3);
+
+  --status-dispute-bg: rgba(244, 63, 94, 0.12);
+  --status-dispute-text: #fb7185;
+  --status-dispute-border: rgba(244, 63, 94, 0.3);
+
+  --status-pending-bg: rgba(245, 158, 11, 0.12);
+  --status-pending-text: #fbbf24;
+  --status-pending-border: rgba(245, 158, 11, 0.3);
+
+  --status-locked-bg: rgba(168, 85, 247, 0.12);
+  --status-locked-text: #c084fc;
+  --status-locked-border: rgba(168, 85, 247, 0.3);
+
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 20px var(--primary-glow);
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+}
