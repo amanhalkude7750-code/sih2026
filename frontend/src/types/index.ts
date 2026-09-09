@@ -183,22 +183,33 @@ export interface Transaction {
   status: 'Completed' | 'Pending Registration' | 'Challenged' | 'Cancelled';
 }
 
+export type DisputeStatus = 
+  | 'Pending'
+  | 'Under Review'
+  | 'Resolved'
+  | 'Rejected'
+  | 'Under Hearing'
+  | 'Stay Order Active'
+  | 'Disposed / Resolved';
+
 /**
  * 6. Dispute (Litigation & Encumbrance Status)
  */
 export interface Dispute {
   dispute_id: string;
   parcel_id: string; // Foreign key
-  case_number: string; // e.g., "LCC/2023/452"
-  court_authority: string; // e.g., "Civil Court, Latur"
-  dispute_type: 'Boundary Conflict' | 'Title Ownership Contest' | 'Inheritance Challenge' | 'Illegal Encroachment' | 'Tenancy Claim';
+  case_number?: string;
+  dispute_type: string;
   filing_date: string;
-  plaintiff: string;
-  respondent: string;
-  status: DisputeStatus;
-  stay_order: boolean;
+  authority: string; // Court or Revenue Authority
+  court_authority?: string;
+  status: 'Pending' | 'Under Review' | 'Resolved' | 'Rejected' | string;
+  description: string;
+  summary?: string;
+  plaintiff?: string;
+  respondent?: string;
+  stay_order?: boolean;
   next_hearing_date?: string;
-  summary: string;
 }
 
 /**
@@ -207,12 +218,15 @@ export interface Dispute {
 export interface AuditEntry {
   audit_id: string;
   parcel_id: string; // Foreign key
-  action: 'CREATED' | 'UPDATED' | 'MUTATION_REQUESTED' | 'RECORD_VERIFIED' | 'DISPUTE_FILED' | 'STATUS_CHANGED';
-  performed_by: string;
-  user_role: UserRole | 'System Automated';
   timestamp: string;
-  ip_address: string;
-  changes_summary: string;
+  actor: string;
+  performed_by?: string;
+  role: string;
+  user_role?: UserRole | 'System Automated' | string;
+  action: 'CREATED' | 'UPDATED' | 'MUTATION_REQUESTED' | 'RECORD_VERIFIED' | 'DISPUTE_FILED' | 'STATUS_CHANGED' | string;
+  description: string;
+  changes_summary?: string;
+  ip_address?: string;
   previous_state?: Record<string, any>;
   new_state?: Record<string, any>;
 }
