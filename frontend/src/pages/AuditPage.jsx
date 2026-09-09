@@ -3,21 +3,30 @@ import { History, ShieldCheck, Filter, Layers, Database } from 'lucide-react';
 import { PageContainer } from '../components/layout/PageContainer.jsx';
 import { AuditTimeline } from '../components/records/AuditTimeline.jsx';
 import { LoadingSpinner } from '../components/ui/LoadingSpinner.jsx';
-import { mockAuditEntries } from '../data/mock/auditEntries.js';
-import { mockParcels } from '../data/mock/parcels.js';
+import { parcelService } from '../services/parcelService.js';
 
 export const AuditPage = () => {
   const [auditLogs, setAuditLogs] = useState([]);
+  const [parcels, setParcels] = useState([]);
   const [selectedParcelFilter, setSelectedParcelFilter] = useState('All');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // In mock mode, load audit entries with simulated latency
-    const timer = setTimeout(() => {
-      setAuditLogs(mockAuditEntries);
-      setLoading(false);
-    }, 150);
-    return () => clearTimeout(timer);
+    async function loadData() {
+      try {
+        const [auditRes, parcelsRes] = await Promise.all([
+          parcelService.getAllAuditLogs(),
+          parcelService.getParcels(),
+        ]);
+        setAuditLogs(auditRes.data || []);
+        setParcels(parcelsRes.data || []);
+      } catch (err) {
+        console.error('Failed to load audit trail', err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadData();
   }, []);
 
   const displayedLogs = selectedParcelFilter === 'All'
@@ -43,7 +52,7 @@ export const AuditPage = () => {
             style={{ fontWeight: 600, color: 'var(--primary-400)' }}
           >
             <option value="All">All Cadastral Parcels</option>
-            {mockParcels.map((p) => (
+            {parcels.map((p) => (
               <option key={p.parcel_id} value={p.parcel_id}>
                 {p.parcel_id} — Survey {p.survey_number} ({p.village})
               </option>

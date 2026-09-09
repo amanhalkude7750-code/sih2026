@@ -244,3 +244,23 @@ export interface UnifiedParcelView {
   disputes: Dispute[];
   auditTrail: AuditEntry[];
 }
+
+/**
+ * 9. Standard Backend REST API Response Contracts
+ */
+export interface ApiSuccessResponse<T> {
+  success: true;
+  data: T;
+  total?: number;
+}
+
+export interface ApiErrorResponse {
+  success: false;
+  error: {
+    code: 'RESOURCE_NOT_FOUND' | 'INVALID_PARCEL_ID' | 'NETWORK_FAILURE' | string;
+    message: string;
+  };
+}
+
+export type ApiResponse<T> = ApiSuccessResponse<T> | ApiErrorResponse;
+

@@ -1,24 +1,25 @@
 /**
  * Core API Client Adapter
  * 
- * Supports both Mock and Remote REST API modes seamlessly.
- * Configured via ENV in `src/config/env.js`.
+ * Implements REST contract handling for Land Governance APIs:
+ * - Expected success response: { success: true, data: ... }
+ * - Expected error response:   { success: false, error: { code: '...', message: '...' } }
+ * - Network failure and timeout resiliency
  */
 
 import { ENV } from '../config/env.js';
 
-class ApiClient {
+export class ApiClient {
   constructor() {
     this.baseUrl = ENV.API_BASE_URL;
     this.timeout = ENV.API_TIMEOUT_MS;
-    this.useMock = ENV.USE_MOCK_DATA;
   }
 
   /**
-   * Generic request handler with timeout and error handling
+   * Generic request handler with timeout, structured contract parsing, and error mapping
    */
   async request(endpoint, options = {}) {
-    const url = `${this.baseUrl}${endpoint}`;
+    const url = endpoint.startsWith('http') ? endpoint : `${this.baseUrl}${endpoint}`;
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), this.timeout);
 
@@ -39,26 +40,81 @@ class ApiClient {
 
       clearTimeout(timeoutId);
 
+      const rawJson = await response.json().catch(() => null);
+
+      // Handle HTTP error statuses (4xx, 5xx)
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        const error = new Error(errorData.message || `HTTP Error ${response.status}: ${response.statusText}`);
+        const errorInfo = rawJson?.error || {};
+        const error = new Error(
+          errorInfo.message || `HTTP Error ${response.status}: ${response.statusText}`
+        );
+        error.code = errorInfo.code || (response.status === 404 ? 'RESOURCE_NOT_FOUND' : `HTTP_${response.status}`);
         error.status = response.status;
-        error.data = errorData;
+        error.data = rawJson;
         throw error;
       }
 
-      return await response.json();
+      // Handle backend API Contract format { success, data, error }
+      if (rawJson && typeof rawJson === 'object') {
+        if (rawJson.success === false) {
+          const errorInfo = rawJson.error || {};
+          const error = new Error(errorInfo.message || 'Land governance API operation failed');
+          error.code = errorInfo.code || 'API_ERROR';
+          error.status = 400;
+          error.data = rawJson;
+          throw error;
+        }
+
+        // Standardized contract { success: true, data: ... }
+        if ('success' in rawJson && 'data' in rawJson) {
+          return rawJson;
+        }
+
+        // Return wrapped response if server returned raw data object
+        return {
+          success: true,
+          data: rawJson,
+        };
+      }
+
+      return {
+        success: true,
+        data: rawJson,
+      };
     } catch (err) {
       clearTimeout(timeoutId);
+
+      // Handle timeout
       if (err.name === 'AbortError') {
-        throw new Error(`Request timed out after ${this.timeout}ms`);
+        const timeoutErr = new Error(`Request timed out after ${this.timeout}ms`);
+        timeoutErr.code = 'TIMEOUT';
+        timeoutErr.isNetworkError = true;
+        throw timeoutErr;
       }
+
+      // Handle Network Connection Refused / Offline / CORS failure
+      if (err instanceof TypeError && (err.message.includes('fetch') || err.message.includes('NetworkError'))) {
+        const netErr = new Error(`Unable to connect to land governance API at ${url}`);
+        netErr.code = 'NETWORK_FAILURE';
+        netErr.isNetworkError = true;
+        netErr.originalError = err;
+        throw netErr;
+      }
+
       throw err;
     }
   }
 
   get(endpoint, params = {}) {
-    const query = new URLSearchParams(params).toString();
+    // Filter out undefined/null/empty params
+    const cleanParams = Object.entries(params).reduce((acc, [k, v]) => {
+      if (v !== undefined && v !== null && v !== '') {
+        acc[k] = v;
+      }
+      return acc;
+    }, {});
+
+    const query = new URLSearchParams(cleanParams).toString();
     const fullEndpoint = query ? `${endpoint}?${query}` : endpoint;
     return this.request(fullEndpoint, { method: 'GET' });
   }

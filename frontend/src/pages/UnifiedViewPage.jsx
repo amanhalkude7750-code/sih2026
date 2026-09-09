@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParcelSelection } from '../hooks/useParcelSelection.js';
 import { ParcelInformationPanel } from '../components/parcel/ParcelInformationPanel.jsx';
 import { ParcelSearch } from '../components/search/ParcelSearch.jsx';
-import { mockParcels } from '../data/mock/parcels.js';
+import { parcelService } from '../services/parcelService.js';
 
 export const UnifiedViewPage = () => {
   const { selectedParcelId, selectParcel } = useParcelSelection();
+  const [parcelList, setParcelList] = useState([]);
   const currentId = selectedParcelId || 'P001';
+
+  useEffect(() => {
+    async function loadParcels() {
+      try {
+        const res = await parcelService.getParcels();
+        setParcelList(res.data || []);
+      } catch (err) {
+        console.error('Failed to load parcel list for selector', err);
+      }
+    }
+    loadParcels();
+  }, []);
 
   const handleIdChange = (id) => {
     selectParcel(id, { openInspector: true, zoomMap: true });
@@ -45,7 +58,7 @@ export const UnifiedViewPage = () => {
               onChange={(e) => handleIdChange(e.target.value)}
               style={{ fontWeight: 700, color: 'var(--primary-400)' }}
             >
-              {mockParcels.map((p) => (
+              {parcelList.map((p) => (
                 <option key={p.parcel_id} value={p.parcel_id}>
                   {p.parcel_id} — Survey {p.survey_number} ({p.village})
                 </option>

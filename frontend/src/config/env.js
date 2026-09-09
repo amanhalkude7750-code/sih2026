@@ -8,13 +8,16 @@
 
 export const ENV = {
   // Mode flag: true uses localized mock database, false connects to REST backend
-  USE_MOCK_DATA: import.meta.env.VITE_USE_MOCK_DATA !== 'false',
+  USE_MOCK_DATA: typeof import.meta !== 'undefined' && import.meta.env ? (import.meta.env.VITE_USE_MOCK_DATA === 'true' || import.meta.env.VITE_USE_MOCK_DATA === undefined) : true,
   
-  // Base URLs for REST APIs
-  API_BASE_URL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api/v1',
+  // Base URLs for REST APIs (defaulting to /api)
+  API_BASE_URL: (typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_BASE_URL) || 'http://localhost:5000/api',
   
   // Request Timeout in ms
-  API_TIMEOUT_MS: 15000,
+  API_TIMEOUT_MS: 12000,
+
+  // Fallback to local data if backend connection fails (guarantees zero demo failures)
+  FALLBACK_ON_NETWORK_ERROR: typeof import.meta !== 'undefined' && import.meta.env ? import.meta.env.VITE_FALLBACK_ON_NETWORK_ERROR !== 'false' : true,
   
   // GIS Configuration
   GIS: {
@@ -34,13 +37,19 @@ export const ENV = {
 export const API_ENDPOINTS = {
   PARCELS: '/parcels',
   PARCEL_BY_ID: (id) => `/parcels/${id}`,
+  PARCEL_DOCUMENTS: (id) => `/parcels/${id}/documents`,
+  PARCEL_TRANSACTIONS: (id) => `/parcels/${id}/transactions`,
+  PARCEL_DISPUTES: (id) => `/parcels/${id}/disputes`,
+  PARCEL_AUDIT: (id) => `/parcels/${id}/audit`,
+  PARCEL_OWNERS: (id) => `/parcels/${id}/owners`,
+  PARCEL_RECORDS: (id) => `/parcels/${id}/records`,
   PARCEL_UNIFIED_VIEW: (id) => `/parcels/${id}/unified`,
-  OWNERS_BY_PARCEL: (id) => `/parcels/${id}/owners`,
-  RECORDS_BY_PARCEL: (id) => `/parcels/${id}/records`,
   DOCUMENTS_BY_PARCEL: (id) => `/parcels/${id}/documents`,
   TRANSACTIONS_BY_PARCEL: (id) => `/parcels/${id}/transactions`,
   DISPUTES_BY_PARCEL: (id) => `/parcels/${id}/disputes`,
   AUDIT_BY_PARCEL: (id) => `/parcels/${id}/audit`,
-  SEARCH: '/search',
+  OWNERS_BY_PARCEL: (id) => `/parcels/${id}/owners`,
+  RECORDS_BY_PARCEL: (id) => `/parcels/${id}/records`,
+  SEARCH: '/parcels',
   GEOJSON: '/parcels/geojson',
 };

@@ -6,7 +6,9 @@
  * Completely local/synthetic for Module 3 offline readiness.
  */
 
-import parcelsGeoJson from '../data/geojson/parcels.json';
+import parcelsGeoJson from '../data/geojson/parcels.json' with { type: 'json' };
+import { ENV, API_ENDPOINTS } from '../config/env.js';
+import { api } from './api.js';
 import { mockParcels } from '../data/mock/parcels.js';
 import { mockOwners } from '../data/mock/owners.js';
 
@@ -37,8 +39,22 @@ export const BASEMAP_TILES = {
 export const gisService = {
   /**
    * Load GeoJSON cadastral dataset
+   * Consumes GeoJSON-compatible REST endpoint when active, with local fallback
    */
   async getCadastralGeoJSON() {
+    if (!ENV.USE_MOCK_DATA) {
+      try {
+        const res = await api.get(API_ENDPOINTS.GEOJSON);
+        if (res.data && res.data.type === 'FeatureCollection') {
+          return res.data;
+        }
+        if (res.type === 'FeatureCollection') {
+          return res;
+        }
+      } catch (err) {
+        console.warn('[gisService] Could not load remote cadastral GeoJSON, falling back to local dataset');
+      }
+    }
     return parcelsGeoJson;
   },
 
