@@ -22,8 +22,8 @@ export const DocumentPreviewModal = ({ document: doc, onClose }) => {
       style={{
         position: 'fixed',
         inset: 0,
-        background: 'rgba(0, 0, 0, 0.8)',
-        backdropFilter: 'blur(8px)',
+        background: 'rgba(19, 36, 22, 0.45)',
+        backdropFilter: 'blur(4px)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -33,14 +33,15 @@ export const DocumentPreviewModal = ({ document: doc, onClose }) => {
       onClick={onClose}
     >
       <div
-        className="card card-glass"
+        className="card"
         style={{
           maxWidth: '820px',
           width: '100%',
           maxHeight: '92vh',
           display: 'flex',
           flexDirection: 'column',
-          border: '1px solid rgba(56, 189, 248, 0.4)',
+          background: 'var(--bg-surface)',
+          border: '1px solid var(--border-subtle)',
           boxShadow: 'var(--shadow-lg)',
           overflow: 'hidden',
           padding: 0,
@@ -55,7 +56,7 @@ export const DocumentPreviewModal = ({ document: doc, onClose }) => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            background: 'rgba(15, 23, 42, 0.9)',
+            background: 'var(--bg-surface)',
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
@@ -64,8 +65,8 @@ export const DocumentPreviewModal = ({ document: doc, onClose }) => {
                 width: '36px',
                 height: '36px',
                 borderRadius: 'var(--radius-md)',
-                background: 'rgba(56, 189, 248, 0.15)',
-                color: 'var(--accent-blue)',
+                background: 'var(--primary-50)',
+                color: 'var(--primary-600)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -120,7 +121,7 @@ export const DocumentPreviewModal = ({ document: doc, onClose }) => {
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
               gap: '0.75rem',
-              background: 'rgba(11, 15, 25, 0.6)',
+              background: 'var(--bg-surface-elevated)',
               padding: '1rem',
               borderRadius: 'var(--radius-md)',
               border: '1px solid var(--border-subtle)',
@@ -136,7 +137,7 @@ export const DocumentPreviewModal = ({ document: doc, onClose }) => {
 
             <div>
               <div style={{ color: 'var(--text-dim)' }}>Document Number</div>
-              <div className="mono" style={{ fontWeight: 600, color: 'var(--primary-400)', marginTop: '2px' }}>
+              <div className="mono" style={{ fontWeight: 600, color: 'var(--primary-700)', marginTop: '2px' }}>
                 {doc.document_number}
               </div>
             </div>
@@ -160,26 +161,27 @@ export const DocumentPreviewModal = ({ document: doc, onClose }) => {
           <div
             style={{
               minHeight: '320px',
-              background: '#ffffff',
+              background: '#FFFFFF',
               borderRadius: 'var(--radius-md)',
               padding: '2rem',
-              color: '#1e293b',
+              color: 'var(--text-main)',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
-              boxShadow: 'inset 0 2px 6px rgba(0,0,0,0.1)',
+              border: '1px solid var(--border-subtle)',
+              boxShadow: 'var(--shadow-sm)',
               fontFamily: 'serif',
             }}
           >
             {/* Document Emblem & Heading */}
-            <div style={{ textAlign: 'center', borderBottom: '2px solid #0f172a', paddingBottom: '1rem' }}>
-              <div style={{ fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#64748b' }}>
+            <div style={{ textAlign: 'center', borderBottom: '2px solid var(--primary-700)', paddingBottom: '1rem' }}>
+              <div style={{ fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>
                 Government of Maharashtra • Department of Revenue & Land Records
               </div>
-              <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#0f172a', marginTop: '0.25rem' }}>
+              <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--primary-900)', marginTop: '0.25rem' }}>
                 CERTIFIED PUBLIC RECORD COPY
               </h2>
-              <div style={{ fontSize: '0.8125rem', color: '#475569', fontStyle: 'italic', marginTop: '2px' }}>
+              <div style={{ fontSize: '0.8125rem', color: 'var(--text-dim)', fontStyle: 'italic', marginTop: '2px' }}>
                 {doc.title} — Registration #{doc.document_number}
               </div>
             </div>
@@ -197,19 +199,19 @@ export const DocumentPreviewModal = ({ document: doc, onClose }) => {
             {/* Electronic Verification Seal */}
             <div
               style={{
-                borderTop: '1px dashed #cbd5e1',
+                borderTop: '1px dashed var(--border-subtle)',
                 paddingTop: '1rem',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 fontSize: '0.75rem',
-                color: '#64748b',
+                color: 'var(--text-dim)',
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <ShieldCheck size={28} style={{ color: '#059669' }} />
+                <ShieldCheck size={28} style={{ color: 'var(--primary-600)' }} />
                 <div>
-                  <div style={{ fontWeight: 700, color: '#059669' }}>
+                  <div style={{ fontWeight: 700, color: 'var(--primary-700)' }}>
                     CRYPTOGRAPHICALLY VERIFIED RECORD
                   </div>
                   <div>DSC Signed by: {doc.verified_by}</div>
@@ -229,7 +231,7 @@ export const DocumentPreviewModal = ({ document: doc, onClose }) => {
           style={{
             padding: '1rem 1.5rem',
             borderTop: '1px solid var(--border-subtle)',
-            background: 'rgba(15, 23, 42, 0.9)',
+            background: 'var(--bg-surface-elevated)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',

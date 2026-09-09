@@ -5,7 +5,7 @@ import { gisService } from '../../services/gisService.js';
 
 // Custom lightweight SVG marker for Centroid Pins
 const createCentroidIcon = (status) => {
-  const color = status === 'Disputed' ? '#ef4444' : status === 'Pending Mutation' ? '#f59e0b' : '#10b981';
+  const color = status === 'Disputed' ? '#B44A28' : status === 'Pending Mutation' ? '#C4841D' : '#235332';
   return L.divIcon({
     className: 'custom-centroid-pin',
     html: `<div style="
@@ -14,7 +14,7 @@ const createCentroidIcon = (status) => {
       background: ${color};
       border: 2px solid #ffffff;
       border-radius: 50%;
-      box-shadow: 0 0 8px ${color};
+      box-shadow: 0 1px 4px rgba(19, 36, 22, 0.25);
     "></div>`,
     iconSize: [14, 14],
     iconAnchor: [7, 7],
@@ -54,16 +54,16 @@ export const ParcelLayer = ({
     // Tooltip with survey and parcel info
     const tooltipContent = `
       <div style="font-family: 'Plus Jakarta Sans', sans-serif; padding: 2px 4px;">
-        <div style="font-weight: 800; color: #10b981; font-size: 0.85rem;">
-          Parcel ${props.parcel_id} <span style="color: #94a3b8; font-weight: normal;">(#${props.survey_number})</span>
+        <div style="font-weight: 800; color: #235332; font-size: 0.85rem;">
+          Parcel ${props.parcel_id} <span style="color: #7A907C; font-weight: normal;">(#${props.survey_number})</span>
         </div>
-        <div style="font-size: 0.75rem; color: #f8fafc; margin-top: 2px;">
+        <div style="font-size: 0.75rem; color: #132416; margin-top: 2px;">
           ${props.village}, ${props.taluka}
         </div>
-        <div style="font-size: 0.7rem; color: #94a3b8; margin-top: 2px;">
+        <div style="font-size: 0.7rem; color: #5C715E; margin-top: 2px;">
           Area: <strong>${props.area} Ha</strong> • ${props.land_use}
         </div>
-        <div style="font-size: 0.7rem; font-weight: 700; color: ${props.status === 'Disputed' ? '#ef4444' : props.status === 'Pending Mutation' ? '#f59e0b' : '#34d399'}; margin-top: 3px;">
+        <div style="font-size: 0.7rem; font-weight: 700; color: ${props.status === 'Disputed' ? '#B44A28' : props.status === 'Pending Mutation' ? '#C4841D' : '#235332'}; margin-top: 3px;">
           ● ${props.status}
         </div>
       </div>
@@ -73,7 +73,7 @@ export const ParcelLayer = ({
       sticky: true,
       direction: 'top',
       className: 'gis-custom-tooltip',
-      opacity: 0.95,
+      opacity: 0.98,
     });
   };
 
@@ -104,16 +104,16 @@ export const ParcelLayer = ({
                 className: 'cadastral-survey-label',
                 html: `<div style="
                   font-family: 'JetBrains Mono', monospace;
-                  background: rgba(15, 23, 42, 0.85);
-                  color: #38bdf8;
-                  border: 1px solid rgba(56, 189, 248, 0.4);
+                  background: #FFFFFF;
+                  color: #235332;
+                  border: 1px solid #DBE4DB;
                   border-radius: 4px;
                   padding: 1px 6px;
                   font-size: 11px;
                   font-weight: 700;
                   white-space: nowrap;
                   transform: translate(-50%, -50%);
-                  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+                  box-shadow: 0 1px 4px rgba(19, 36, 22, 0.15);
                 ">${feat.properties.survey_number}</div>`,
                 iconSize: [0, 0],
               })}

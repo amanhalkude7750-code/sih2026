@@ -88,8 +88,8 @@ export const OperationalMetrics = ({ stats, onMetricClick }) => {
             key={m.id}
             className="card card-hover"
             style={{
-              background: 'rgba(15, 23, 42, 0.85)',
-              border: `1px solid ${m.border}`,
+              background: '#ffffff',
+              border: `1px solid var(--border-subtle)`,
               padding: '1.25rem 1.5rem',
               display: 'flex',
               flexDirection: 'column',
@@ -155,7 +155,7 @@ export const OperationalMetrics = ({ stats, onMetricClick }) => {
                 justifyContent: 'space-between',
                 flexWrap: 'wrap',
                 gap: '0.5rem',
-                borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+                borderTop: '1px solid var(--border-subtle)',
                 paddingTop: '0.75rem',
                 fontSize: '0.75rem',
               }}

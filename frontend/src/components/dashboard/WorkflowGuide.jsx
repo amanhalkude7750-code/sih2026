@@ -39,8 +39,8 @@ export const WorkflowGuide = ({ onSearchFocus, onSelectSample, onOpenGIS }) => {
     <div
       className="card"
       style={{
-        background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.7) 100%)',
-        border: '1px solid rgba(16, 185, 129, 0.3)',
+        background: '#ffffff',
+        border: '1px solid var(--border-subtle)',
         padding: '1.25rem 1.75rem',
         display: 'flex',
         flexDirection: 'column',
@@ -58,7 +58,7 @@ export const WorkflowGuide = ({ onSearchFocus, onSelectSample, onOpenGIS }) => {
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-          <Sparkles size={18} style={{ color: 'var(--primary-400)' }} />
+          <Sparkles size={18} style={{ color: 'var(--primary-600)' }} />
           <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-main)' }}>
             Core Governance Workflow: One Parcel → One Unified View
           </h3>
@@ -78,7 +78,7 @@ export const WorkflowGuide = ({ onSearchFocus, onSelectSample, onOpenGIS }) => {
             type="button"
             className="btn btn-outline btn-sm"
             onClick={() => onSelectSample && onSelectSample('P003')}
-            style={{ fontSize: '0.72rem', padding: '0.2rem 0.55rem', borderColor: 'rgba(239, 68, 68, 0.4)', color: '#ef4444' }}
+            style={{ fontSize: '0.72rem', padding: '0.2rem 0.55rem', borderColor: 'var(--accent-terracotta)', color: 'var(--accent-terracotta)' }}
           >
             P003 (Disputed)
           </button>
@@ -100,8 +100,8 @@ export const WorkflowGuide = ({ onSearchFocus, onSelectSample, onOpenGIS }) => {
             <div
               key={item.step}
               style={{
-                background: 'rgba(0, 0, 0, 0.25)',
-                border: '1px solid rgba(255, 255, 255, 0.06)',
+                background: 'var(--bg-surface-hover)',
+                border: '1px solid var(--border-subtle)',
                 borderRadius: 'var(--radius-md)',
                 padding: '1rem 1.25rem',
                 display: 'flex',

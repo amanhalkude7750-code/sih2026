@@ -29,14 +29,13 @@ export const LayerControl = ({
           display: 'flex',
           alignItems: 'center',
           gap: '0.5rem',
-          background: 'rgba(15, 23, 42, 0.9)',
-          backdropFilter: 'blur(10px)',
+          background: 'var(--bg-surface)',
           border: '1px solid var(--border-subtle)',
           boxShadow: 'var(--shadow-md)',
           padding: '0.5rem 0.85rem',
         }}
       >
-        <Layers size={16} style={{ color: 'var(--primary-400)' }} />
+        <Layers size={16} style={{ color: 'var(--primary-600)' }} />
         <span style={{ fontSize: '0.8125rem', fontWeight: 600 }}>Layers</span>
         {isOpen ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
       </button>
@@ -44,12 +43,14 @@ export const LayerControl = ({
       {/* Expanded Control Box */}
       {isOpen && (
         <div
-          className="card card-glass"
+          className="card"
           style={{
             marginTop: '8px',
             padding: '1rem',
             borderRadius: 'var(--radius-md)',
             boxShadow: 'var(--shadow-lg)',
+            background: 'var(--bg-surface)',
+            border: '1px solid var(--border-subtle)',
             display: 'flex',
             flexDirection: 'column',
             gap: '1rem',
@@ -85,8 +86,8 @@ export const LayerControl = ({
                       padding: '0.45rem 0.6rem',
                       borderRadius: 'var(--radius-sm)',
                       border: 'none',
-                      background: isActive ? 'rgba(16, 185, 129, 0.15)' : 'transparent',
-                      color: isActive ? 'var(--primary-400)' : 'var(--text-main)',
+                      background: isActive ? 'var(--primary-50)' : 'transparent',
+                      color: isActive ? 'var(--primary-700)' : 'var(--text-main)',
                       fontSize: '0.78rem',
                       fontWeight: isActive ? 700 : 500,
                       cursor: 'pointer',

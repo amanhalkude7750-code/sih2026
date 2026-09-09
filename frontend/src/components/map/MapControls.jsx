@@ -35,10 +35,10 @@ export const MapControls = ({ onResetExtent, onZoomToSelected, hasSelectedParcel
           width: '38px',
           height: '38px',
           padding: 0,
-          background: 'rgba(15, 23, 42, 0.9)',
-          backdropFilter: 'blur(8px)',
+          background: 'var(--bg-surface)',
           border: '1px solid var(--border-subtle)',
           boxShadow: 'var(--shadow-md)',
+          color: 'var(--text-main)',
         }}
       >
         <Plus size={18} />
@@ -54,10 +54,10 @@ export const MapControls = ({ onResetExtent, onZoomToSelected, hasSelectedParcel
           width: '38px',
           height: '38px',
           padding: 0,
-          background: 'rgba(15, 23, 42, 0.9)',
-          backdropFilter: 'blur(8px)',
+          background: 'var(--bg-surface)',
           border: '1px solid var(--border-subtle)',
           boxShadow: 'var(--shadow-md)',
+          color: 'var(--text-main)',
         }}
       >
         <Minus size={18} />
@@ -73,11 +73,10 @@ export const MapControls = ({ onResetExtent, onZoomToSelected, hasSelectedParcel
           width: '38px',
           height: '38px',
           padding: 0,
-          background: 'rgba(15, 23, 42, 0.9)',
-          backdropFilter: 'blur(8px)',
+          background: 'var(--bg-surface)',
           border: '1px solid var(--border-subtle)',
           boxShadow: 'var(--shadow-md)',
-          color: 'var(--primary-400)',
+          color: 'var(--primary-700)',
         }}
       >
         <Maximize2 size={16} />

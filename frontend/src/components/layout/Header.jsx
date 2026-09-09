@@ -67,8 +67,8 @@ export const Header = ({ activePageTitle, onToggleMobileMenu, onOpenRoleModal })
               display: 'flex',
               alignItems: 'center',
               gap: '0.5rem',
-              borderColor: currentRoleMeta.badgeColor,
-              background: 'rgba(30, 41, 59, 0.9)',
+              borderColor: 'var(--border-subtle)',
+              background: '#ffffff',
             }}
           >
             <span
@@ -77,7 +77,6 @@ export const Header = ({ activePageTitle, onToggleMobileMenu, onOpenRoleModal })
                 height: '8px',
                 borderRadius: '50%',
                 background: currentRoleMeta.badgeColor,
-                boxShadow: `0 0 8px ${currentRoleMeta.badgeColor}`,
               }}
             />
             <span style={{ fontSize: '0.8125rem', fontWeight: 700, color: 'var(--text-main)' }}>
@@ -93,7 +92,7 @@ export const Header = ({ activePageTitle, onToggleMobileMenu, onOpenRoleModal })
                 top: '120%',
                 right: 0,
                 width: '240px',
-                background: 'var(--bg-secondary)',
+                background: '#ffffff',
                 border: '1px solid var(--border-subtle)',
                 borderRadius: 'var(--radius-md)',
                 boxShadow: 'var(--shadow-lg)',
@@ -125,8 +124,8 @@ export const Header = ({ activePageTitle, onToggleMobileMenu, onOpenRoleModal })
                     padding: '0.5rem 0.6rem',
                     borderRadius: 'var(--radius-sm)',
                     border: 'none',
-                    background: role === r.name ? 'rgba(16, 185, 129, 0.15)' : 'transparent',
-                    color: role === r.name ? 'var(--primary-400)' : 'var(--text-main)',
+                    background: role === r.name ? 'var(--bg-surface-hover)' : 'transparent',
+                    color: role === r.name ? 'var(--primary-700)' : 'var(--text-main)',
                     fontSize: '0.8125rem',
                     fontWeight: role === r.name ? 700 : 500,
                     cursor: 'pointer',

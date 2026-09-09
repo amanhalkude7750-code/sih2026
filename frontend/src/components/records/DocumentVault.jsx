@@ -96,8 +96,9 @@ export const DocumentVault = ({ documents = [] }) => {
               key={doc.document_id}
               className="card card-hover"
               style={{
-                background: 'rgba(15, 23, 42, 0.7)',
+                background: 'var(--bg-surface)',
                 border: '1px solid var(--border-subtle)',
+                boxShadow: 'var(--shadow-sm)',
                 padding: '1.25rem',
                 display: 'flex',
                 flexDirection: 'column',
@@ -112,8 +113,8 @@ export const DocumentVault = ({ documents = [] }) => {
                       width: '38px',
                       height: '38px',
                       borderRadius: 'var(--radius-md)',
-                      background: 'rgba(56, 189, 248, 0.15)',
-                      color: 'var(--accent-blue)',
+                      background: 'var(--primary-50)',
+                      color: 'var(--primary-700)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -128,7 +129,7 @@ export const DocumentVault = ({ documents = [] }) => {
                     </h4>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: '4px', flexWrap: 'wrap' }}>
                       <span className="badge badge-cyan">{doc.document_type}</span>
-                      <span className="mono" style={{ fontSize: '0.7rem', color: 'var(--primary-400)' }}>
+                      <span className="mono" style={{ fontSize: '0.7rem', color: 'var(--primary-700)' }}>
                         #{doc.document_number}
                       </span>
                     </div>
@@ -142,14 +143,14 @@ export const DocumentVault = ({ documents = [] }) => {
                     display: 'flex',
                     flexDirection: 'column',
                     gap: '0.25rem',
-                    borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+                    borderTop: '1px solid var(--border-subtle)',
                     paddingTop: '0.65rem',
                   }}
                 >
                   <div>Issuing Authority: <strong style={{ color: 'var(--text-main)' }}>{doc.verified_by}</strong></div>
                   <div>Date: {formatDate(doc.uploaded_at)} • Size: {formatFileSize(doc.file_size_kb)}</div>
                   {doc.blockchain_txn_hash && (
-                    <div className="mono" style={{ fontSize: '0.68rem', color: 'var(--primary-400)', marginTop: '2px' }}>
+                    <div className="mono" style={{ fontSize: '0.68rem', color: 'var(--primary-700)', marginTop: '2px' }}>
                       Proof: {doc.blockchain_txn_hash}
                     </div>
                   )}
@@ -161,7 +162,7 @@ export const DocumentVault = ({ documents = [] }) => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+                  borderTop: '1px solid var(--border-subtle)',
                   paddingTop: '0.75rem',
                 }}
               >
@@ -170,7 +171,7 @@ export const DocumentVault = ({ documents = [] }) => {
                     <ShieldCheck size={12} /> Verified
                   </span>
                 ) : (
-                  <span className="badge" style={{ background: 'rgba(245, 158, 11, 0.15)', color: 'var(--accent-amber)' }}>
+                  <span className="badge badge-amber">
                     <Clock size={12} /> Pending
                   </span>
                 )}

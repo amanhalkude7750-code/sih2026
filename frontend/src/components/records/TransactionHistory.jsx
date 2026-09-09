@@ -102,10 +102,8 @@ export const TransactionHistory = ({ transactions = [] }) => {
                   <td>
                     <span className="badge badge-cyan">{txn.transaction_type}</span>
                   </td>
-                  <td>
-                    <div className="mono" style={{ fontWeight: 600, color: 'var(--primary-400)' }}>
-                      {txn.registration_number}
-                    </div>
+                  <td className="mono" style={{ fontWeight: 600, color: 'var(--primary-700)' }}>
+                    {txn.registration_number}
                     <div style={{ fontSize: '0.7rem', color: 'var(--text-dim)', marginTop: '2px' }}>
                       {txn.sub_registrar_office}
                     </div>
@@ -117,8 +115,8 @@ export const TransactionHistory = ({ transactions = [] }) => {
                     </div>
                   </td>
                   <td>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', color: 'var(--primary-300)', fontWeight: 600 }}>
-                      <User size={13} style={{ color: 'var(--primary-400)', flexShrink: 0 }} />
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', color: 'var(--primary-700)', fontWeight: 600 }}>
+                      <User size={13} style={{ color: 'var(--primary-600)', flexShrink: 0 }} />
                       <span>{txn.to_party}</span>
                     </div>
                   </td>
@@ -147,8 +145,9 @@ export const TransactionHistory = ({ transactions = [] }) => {
               key={txn.transaction_id}
               className="card"
               style={{
-                background: 'rgba(15, 23, 42, 0.7)',
+                background: 'var(--bg-surface)',
                 border: '1px solid var(--border-subtle)',
+                boxShadow: 'var(--shadow-sm)',
                 padding: '1.25rem 1.5rem',
                 display: 'flex',
                 flexDirection: 'column',
@@ -162,8 +161,8 @@ export const TransactionHistory = ({ transactions = [] }) => {
                       width: '36px',
                       height: '36px',
                       borderRadius: 'var(--radius-md)',
-                      background: 'rgba(56, 189, 248, 0.15)',
-                      color: 'var(--accent-blue)',
+                      background: 'var(--primary-50)',
+                      color: 'var(--primary-700)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -175,7 +174,7 @@ export const TransactionHistory = ({ transactions = [] }) => {
                     <div style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--text-main)' }}>
                       {txn.transaction_type}
                     </div>
-                    <div className="mono" style={{ fontSize: '0.75rem', color: 'var(--primary-400)' }}>
+                    <div className="mono" style={{ fontSize: '0.75rem', color: 'var(--primary-700)' }}>
                       Registry #{txn.registration_number} • {txn.sub_registrar_office}
                     </div>
                   </div>
@@ -187,7 +186,8 @@ export const TransactionHistory = ({ transactions = [] }) => {
               {/* Transfer Flow Visualizer */}
               <div
                 style={{
-                  background: 'rgba(11, 15, 25, 0.5)',
+                  background: 'var(--bg-surface-elevated)',
+                  border: '1px solid var(--border-subtle)',
                   padding: '0.75rem 1rem',
                   borderRadius: 'var(--radius-sm)',
                   display: 'flex',
@@ -207,7 +207,7 @@ export const TransactionHistory = ({ transactions = [] }) => {
                   </div>
                 </div>
 
-                <div style={{ color: 'var(--primary-400)', fontWeight: 700 }}>
+                <div style={{ color: 'var(--primary-600)', fontWeight: 700 }}>
                   ➔ ➔
                 </div>
 
@@ -215,7 +215,7 @@ export const TransactionHistory = ({ transactions = [] }) => {
                   <div style={{ fontSize: '0.68rem', color: 'var(--text-dim)', textTransform: 'uppercase' }}>
                     Transferee (New Party)
                   </div>
-                  <div style={{ color: 'var(--primary-400)', fontWeight: 700, marginTop: '2px' }}>
+                  <div style={{ color: 'var(--primary-700)', fontWeight: 700, marginTop: '2px' }}>
                     {txn.to_party}
                   </div>
                 </div>
@@ -229,7 +229,7 @@ export const TransactionHistory = ({ transactions = [] }) => {
                   justifyContent: 'space-between',
                   fontSize: '0.78rem',
                   color: 'var(--text-muted)',
-                  borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+                  borderTop: '1px solid var(--border-subtle)',
                   paddingTop: '0.5rem',
                   flexWrap: 'wrap',
                   gap: '0.5rem',

@@ -16,7 +16,7 @@ export const RoleSelectionPage = ({ onProceedToDashboard }) => {
       minHeight: '100vh',
       display: 'flex',
       flexDirection: 'column',
-      background: 'radial-gradient(ellipse at top center, rgba(16, 185, 129, 0.1) 0%, rgba(11, 15, 25, 1) 75%)',
+      background: 'radial-gradient(ellipse at top center, rgba(45, 90, 56, 0.08) 0%, #f5f8f5 75%)',
       color: 'var(--text-main)',
       padding: '2.5rem 1.5rem',
     }}>
@@ -43,7 +43,7 @@ export const RoleSelectionPage = ({ onProceedToDashboard }) => {
               width: '40px',
               height: '40px',
               borderRadius: 'var(--radius-md)',
-              background: 'linear-gradient(135deg, var(--primary-500), #047857)',
+              background: 'linear-gradient(135deg, var(--primary-600), var(--primary-800))',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -52,7 +52,7 @@ export const RoleSelectionPage = ({ onProceedToDashboard }) => {
               <Landmark size={22} />
             </div>
             <div>
-              <h2 style={{ fontSize: '1.25rem', fontWeight: 800 }}>{ENV.APP_NAME}</h2>
+              <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--primary-700)', letterSpacing: '0.04em' }}>LANDSTACK</h2>
               <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
                 Step 2 of 2: Confirm Administrative Persona
               </div>

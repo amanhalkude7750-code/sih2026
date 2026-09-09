@@ -29,9 +29,9 @@ export const ENV = {
   },
   
   // Application Meta
-  APP_NAME: 'GeoLand DPI',
-  APP_VERSION: '1.0.0-alpha',
-  APP_MOTTO: 'One Parcel -> One Unified View -> Faster Land Governance Decisions',
+  APP_NAME: 'LANDSTACK',
+  APP_VERSION: '1.0.0-dpi',
+  APP_MOTTO: 'Bridging the gap between complex land systems and ground-level realities to ensure land governance is inclusive, transparent, and just.',
 };
 
 export const API_ENDPOINTS = {

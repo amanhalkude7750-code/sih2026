@@ -31,16 +31,14 @@ export const RoleSelector = ({ selectedRole, onSelectRole, showAsCards = true })
             style={{
               cursor: 'pointer',
               border: isSelected
-                ? `2px solid ${r.badgeColor}`
+                ? `2px solid var(--primary-600)`
                 : '1px solid var(--border-subtle)',
-              background: isSelected
-                ? 'rgba(30, 41, 59, 0.95)'
-                : 'var(--bg-surface)',
+              background: '#ffffff',
               position: 'relative',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
-              boxShadow: isSelected ? `0 0 20px ${r.bgColor}` : 'none',
+              boxShadow: isSelected ? 'var(--shadow-md)' : 'var(--shadow-sm)',
               transition: 'all var(--transition-fast)',
             }}
           >
@@ -90,7 +88,8 @@ export const RoleSelector = ({ selectedRole, onSelectRole, showAsCards = true })
 
               {/* Capabilities Checklist */}
               <div style={{
-                background: 'rgba(11, 15, 25, 0.4)',
+                background: '#f4f8f4',
+                border: '1px solid var(--border-subtle)',
                 borderRadius: 'var(--radius-sm)',
                 padding: '0.75rem',
                 display: 'flex',

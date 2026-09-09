@@ -33,7 +33,7 @@ export const Sidebar = ({ activeTab, onSelectTab, onOpenRoleModal }) => {
       {/* Brand & DPI Header */}
       <div
         style={{
-          padding: '1.5rem 1.25rem',
+          padding: '1.25rem 1.25rem',
           borderBottom: '1px solid var(--border-subtle)',
           display: 'flex',
           alignItems: 'center',
@@ -45,30 +45,31 @@ export const Sidebar = ({ activeTab, onSelectTab, onOpenRoleModal }) => {
             width: '38px',
             height: '38px',
             borderRadius: 'var(--radius-md)',
-            background: 'linear-gradient(135deg, var(--primary-500), #047857)',
+            background: 'linear-gradient(135deg, var(--primary-600), var(--primary-800))',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             color: '#ffffff',
-            boxShadow: '0 0 14px var(--primary-glow)',
+            boxShadow: '0 2px 8px rgba(35, 83, 50, 0.2)',
             flexShrink: 0,
           }}
         >
-          <Landmark size={22} />
+          <Layers size={20} />
         </div>
         <div>
           <div
             style={{
               fontWeight: 800,
-              fontSize: '1.05rem',
-              letterSpacing: '-0.02em',
-              color: 'var(--text-main)',
+              fontSize: '1.1rem',
+              letterSpacing: '0.04em',
+              color: 'var(--primary-700)',
+              lineHeight: 1.1,
             }}
           >
-            {ENV.APP_NAME}
+            LANDSTACK
           </div>
-          <div style={{ fontSize: '0.7rem', color: 'var(--primary-400)', fontWeight: 600 }}>
-            Land Governance DPI
+          <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)', fontWeight: 600, marginTop: '2px' }}>
+            Center for Land Governance
           </div>
         </div>
       </div>
@@ -79,8 +80,8 @@ export const Sidebar = ({ activeTab, onSelectTab, onOpenRoleModal }) => {
           margin: '1rem 0.85rem 0.5rem',
           padding: '0.75rem',
           borderRadius: 'var(--radius-md)',
-          background: 'rgba(15, 23, 42, 0.8)',
-          border: `1px solid ${currentRoleMeta.badgeColor}40`,
+          background: 'var(--bg-surface-hover)',
+          border: `1px solid var(--border-subtle)`,
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.25rem' }}>
@@ -93,7 +94,7 @@ export const Sidebar = ({ activeTab, onSelectTab, onOpenRoleModal }) => {
               color: currentRoleMeta.badgeColor,
               fontWeight: 700,
               background: currentRoleMeta.bgColor,
-              padding: '0.1rem 0.4rem',
+              padding: '0.1rem 0.45rem',
               borderRadius: 'var(--radius-sm)',
             }}
           >
@@ -103,7 +104,7 @@ export const Sidebar = ({ activeTab, onSelectTab, onOpenRoleModal }) => {
         <div style={{ fontSize: '0.8125rem', fontWeight: 700, color: 'var(--text-main)' }}>
           {user?.full_name}
         </div>
-        <div style={{ fontSize: '0.7rem', color: 'var(--text-dim)', marginTop: '2px' }}>
+        <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '2px' }}>
           {user?.designation}
         </div>
 
@@ -116,8 +117,8 @@ export const Sidebar = ({ activeTab, onSelectTab, onOpenRoleModal }) => {
               padding: '0.35rem 0.5rem',
               borderRadius: 'var(--radius-sm)',
               border: '1px solid var(--border-subtle)',
-              background: 'rgba(255, 255, 255, 0.04)',
-              color: 'var(--text-muted)',
+              background: '#ffffff',
+              color: 'var(--primary-700)',
               fontSize: '0.7rem',
               fontWeight: 600,
               display: 'flex',
@@ -167,7 +168,7 @@ export const Sidebar = ({ activeTab, onSelectTab, onOpenRoleModal }) => {
         style={{
           padding: '1rem 1.25rem',
           borderTop: '1px solid var(--border-subtle)',
-          background: 'rgba(11, 15, 25, 0.6)',
+          background: 'var(--bg-secondary)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -175,12 +176,12 @@ export const Sidebar = ({ activeTab, onSelectTab, onOpenRoleModal }) => {
       >
         <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>
           <div>One Parcel → One View</div>
-          <div style={{ color: 'var(--primary-400)', fontWeight: 600 }}>SIH 2026 Prototype</div>
+          <div style={{ color: 'var(--primary-600)', fontWeight: 600 }}>landstack.org DPI</div>
         </div>
         <button
           onClick={logout}
           className="btn btn-secondary btn-sm"
-          style={{ padding: '0.35rem', color: 'var(--accent-rose)' }}
+          style={{ padding: '0.35rem', color: 'var(--accent-terracotta)' }}
           title="Logout"
         >
           <LogOut size={14} />

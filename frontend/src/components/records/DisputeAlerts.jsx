@@ -187,8 +187,8 @@ export const DisputeAlerts = ({ disputes = [] }) => {
                 key={disp.dispute_id}
                 className="card"
                 style={{
-                  background: isResolved ? 'rgba(15, 23, 42, 0.7)' : 'rgba(239, 68, 68, 0.08)',
-                  border: isResolved ? '1px solid var(--border-subtle)' : '1px solid rgba(239, 68, 68, 0.4)',
+                  background: isResolved ? '#ffffff' : '#fdf6f4',
+                  border: isResolved ? '1px solid var(--border-subtle)' : '1px solid var(--status-dispute-border)',
                   padding: '1.5rem',
                   display: 'flex',
                   flexDirection: 'column',
@@ -219,11 +219,11 @@ export const DisputeAlerts = ({ disputes = [] }) => {
                         <h4 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-main)' }}>
                           {disp.dispute_type}
                         </h4>
-                        <span className="mono" style={{ fontSize: '0.75rem', color: 'var(--primary-400)', background: 'rgba(16, 185, 129, 0.1)', padding: '0.15rem 0.5rem', borderRadius: '4px' }}>
+                        <span className="mono" style={{ fontSize: '0.75rem', color: 'var(--primary-600)', background: 'var(--bg-surface-hover)', padding: '0.15rem 0.5rem', borderRadius: '4px' }}>
                           ID: {disp.dispute_id}
                         </span>
                         {disp.case_number && (
-                          <span className="mono" style={{ fontSize: '0.75rem', color: 'var(--accent-blue)', background: 'rgba(56, 189, 248, 0.1)', padding: '0.15rem 0.5rem', borderRadius: '4px' }}>
+                          <span className="mono" style={{ fontSize: '0.75rem', color: 'var(--accent-blue)', background: '#e8f4fd', padding: '0.15rem 0.5rem', borderRadius: '4px' }}>
                             Case #{disp.case_number}
                           </span>
                         )}
@@ -260,7 +260,7 @@ export const DisputeAlerts = ({ disputes = [] }) => {
                 {/* Description Body */}
                 <div
                   style={{
-                    background: 'rgba(0, 0, 0, 0.3)',
+                    background: 'var(--bg-surface-hover)',
                     padding: '0.85rem 1.1rem',
                     borderRadius: 'var(--radius-sm)',
                     fontSize: '0.825rem',

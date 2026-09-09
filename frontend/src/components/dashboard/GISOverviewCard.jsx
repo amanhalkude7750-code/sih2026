@@ -38,7 +38,7 @@ const MapViewController = ({ selectedFeature }) => {
 export const GISOverviewCard = ({ onNavigateToParcel, onOpenFullGIS }) => {
   const { selectedParcelId, selectParcel } = useParcelSelection();
   const [geoData, setGeoData] = useState(null);
-  const [activeBasemap, setActiveBasemap] = useState('dark');
+  const [activeBasemap, setActiveBasemap] = useState('streets');
   const [activeFeature, setActiveFeature] = useState(null);
   const [loading, setLoading] = useState(true);
   const geoJsonRef = useRef(null);
@@ -74,14 +74,14 @@ export const GISOverviewCard = ({ onNavigateToParcel, onOpenFullGIS }) => {
     const isDisputed = p.status === 'Disputed';
     const isPending = p.status === 'Pending Mutation';
 
-    const statusColor = isDisputed ? '#ef4444' : isPending ? '#f59e0b' : '#10b981';
+    const statusColor = isDisputed ? '#B44A28' : isPending ? '#C4841D' : '#235332';
 
     // Tooltip
     layer.bindTooltip(
       `
       <div style="font-family: var(--font-sans); padding: 4px;">
-        <strong style="color: #38bdf8;">Parcel ${p.parcel_id}</strong> (Survey #${p.survey_number})<br/>
-        <span style="font-size: 11px; color: #94a3b8;">${p.village} • ${p.area} Ha</span><br/>
+        <strong style="color: #235332;">Parcel ${p.parcel_id}</strong> (Survey #${p.survey_number})<br/>
+        <span style="font-size: 11px; color: #5C715E;">${p.village} • ${p.area} Ha</span><br/>
         <span style="font-size: 11px; color: ${statusColor}; font-weight: 700;">● ${p.status}</span>
       </div>
       `,
@@ -130,7 +130,7 @@ export const GISOverviewCard = ({ onNavigateToParcel, onOpenFullGIS }) => {
       <div
         style={{
           padding: '0.85rem 1.25rem',
-          background: 'rgba(15, 23, 42, 0.95)',
+          background: '#ffffff',
           borderBottom: '1px solid var(--border-subtle)',
           display: 'flex',
           alignItems: 'center',
@@ -261,7 +261,7 @@ export const GISOverviewCard = ({ onNavigateToParcel, onOpenFullGIS }) => {
             position: 'absolute',
             bottom: '12px',
             left: '12px',
-            background: 'rgba(15, 23, 42, 0.9)',
+            background: '#ffffff',
             border: '1px solid var(--border-subtle)',
             borderRadius: 'var(--radius-sm)',
             padding: '0.4rem 0.75rem',
@@ -271,19 +271,19 @@ export const GISOverviewCard = ({ onNavigateToParcel, onOpenFullGIS }) => {
             gap: '0.75rem',
             fontSize: '0.7rem',
             color: 'var(--text-main)',
-            backdropFilter: 'blur(8px)',
+            boxShadow: 'var(--shadow-sm)',
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-            <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }} />
+            <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--primary-600)' }} />
             <span>Active</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-            <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f59e0b' }} />
+            <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--accent-amber)' }} />
             <span>Pending</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-            <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ef4444' }} />
+            <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--accent-terracotta)' }} />
             <span>Disputed</span>
           </div>
         </div>
@@ -291,7 +291,7 @@ export const GISOverviewCard = ({ onNavigateToParcel, onOpenFullGIS }) => {
         {/* Selected Parcel Quick Action Overlay at Bottom-Right */}
         {activeFeature && (
           <div
-            className="card card-glass"
+            className="card"
             style={{
               position: 'absolute',
               bottom: '12px',
@@ -299,16 +299,16 @@ export const GISOverviewCard = ({ onNavigateToParcel, onOpenFullGIS }) => {
               maxWidth: '300px',
               padding: '0.75rem 1rem',
               zIndex: 1000,
-              background: 'rgba(15, 23, 42, 0.95)',
-              border: '1px solid var(--border-focus)',
-              boxShadow: '0 8px 24px rgba(0,0,0,0.6)',
+              background: '#ffffff',
+              border: '1px solid var(--border-subtle)',
+              boxShadow: 'var(--shadow-md)',
               display: 'flex',
               flexDirection: 'column',
               gap: '0.5rem',
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span className="mono" style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--primary-400)' }}>
+              <span className="mono" style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--primary-600)' }}>
                 {activeFeature.properties.parcel_id}
               </span>
               <span

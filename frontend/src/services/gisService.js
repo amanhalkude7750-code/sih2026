@@ -85,50 +85,50 @@ export const gisService = {
 
     if (isSelected) {
       return {
-        fillColor: '#38bdf8',
+        fillColor: '#1A6AFF',
         weight: 3.5,
         opacity: 1,
-        color: '#00f2fe',
+        color: '#0D4EC7',
         dashArray: '',
-        fillOpacity: 0.65,
+        fillOpacity: 0.5,
       };
     }
 
     switch (status) {
       case 'Disputed':
         return {
-          fillColor: '#ef4444',
+          fillColor: '#B44A28',
           weight: 2.5,
-          opacity: 0.9,
-          color: '#f87171',
+          opacity: 0.95,
+          color: '#8D361B',
           dashArray: '',
           fillOpacity: 0.45,
         };
       case 'Pending Mutation':
         return {
-          fillColor: '#f59e0b',
+          fillColor: '#C4841D',
           weight: 2,
-          opacity: 0.9,
-          color: '#fbbf24',
+          opacity: 0.95,
+          color: '#9E6712',
           dashArray: '5, 5',
           fillOpacity: 0.4,
         };
       case 'Locked':
         return {
-          fillColor: '#8b5cf6',
+          fillColor: '#6B4F82',
           weight: 2,
           opacity: 0.9,
-          color: '#c084fc',
+          color: '#4F3563',
           dashArray: '',
           fillOpacity: 0.4,
         };
       case 'Active':
       default:
         return {
-          fillColor: '#10b981',
+          fillColor: '#528C5F',
           weight: 2,
-          opacity: 0.85,
-          color: '#34d399',
+          opacity: 0.9,
+          color: '#235332',
           dashArray: '',
           fillOpacity: 0.35,
         };
@@ -142,16 +142,16 @@ export const gisService = {
     if (isSelected) {
       return {
         weight: 4,
-        color: '#ffffff',
-        fillColor: '#38bdf8',
-        fillOpacity: 0.75,
+        color: '#0D4EC7',
+        fillColor: '#1A6AFF',
+        fillOpacity: 0.65,
       };
     }
     return {
       weight: 3,
-      color: '#38bdf8',
+      color: '#1A6AFF',
       dashArray: '',
-      fillOpacity: 0.55,
+      fillOpacity: 0.5,
     };
   },
 

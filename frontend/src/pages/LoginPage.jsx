@@ -11,6 +11,7 @@ import {
   ShieldCheck,
   CheckCircle2,
   Sparkles,
+  Layers,
 } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth.js';
 import { ENV } from '../config/env.js';
@@ -54,7 +55,7 @@ export const LoginPage = ({ onLoginSuccess }) => {
     <div style={{
       minHeight: '100vh',
       display: 'flex',
-      background: 'radial-gradient(ellipse at top right, rgba(16, 185, 129, 0.12) 0%, rgba(11, 15, 25, 1) 70%)',
+      background: 'radial-gradient(ellipse at top right, rgba(45, 90, 56, 0.09) 0%, #f5f8f5 70%)',
       color: 'var(--text-main)',
       alignItems: 'center',
       justifyContent: 'center',
@@ -68,65 +69,65 @@ export const LoginPage = ({ onLoginSuccess }) => {
         gap: '2.5rem',
         alignItems: 'center',
       }}>
-        {/* Left Hero & SIH 2026 Overview */}
+        {/* Left Hero & Landstack Mission */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
             <div style={{
               width: '48px',
               height: '48px',
               borderRadius: 'var(--radius-md)',
-              background: 'linear-gradient(135deg, var(--primary-500), #047857)',
+              background: 'linear-gradient(135deg, var(--primary-600), var(--primary-800))',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               color: '#ffffff',
-              boxShadow: '0 0 20px var(--primary-glow)',
+              boxShadow: '0 4px 14px rgba(35, 83, 50, 0.25)',
             }}>
-              <Landmark size={28} />
+              <Layers size={26} />
             </div>
             <div>
-              <h1 style={{ fontSize: '1.75rem', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.1 }}>
-                {ENV.APP_NAME}
+              <h1 style={{ fontSize: '1.75rem', fontWeight: 800, letterSpacing: '0.04em', lineHeight: 1.1, color: 'var(--primary-700)' }}>
+                LANDSTACK
               </h1>
-              <div style={{ fontSize: '0.8125rem', color: 'var(--primary-400)', fontWeight: 600 }}>
-                Digital Public Infrastructure for Land Governance
+              <div style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', fontWeight: 600 }}>
+                Center for Land Governance • Digital Public Infrastructure
               </div>
             </div>
           </div>
 
           <div>
-            <h2 style={{ fontSize: '1.875rem', fontWeight: 800, lineHeight: 1.25, color: '#ffffff' }}>
-              One Parcel <span style={{ color: 'var(--primary-400)' }}>→</span> One Unified View <span style={{ color: 'var(--primary-400)' }}>→</span> Faster Decisions
+            <h2 style={{ fontSize: '1.875rem', fontWeight: 800, lineHeight: 1.25, color: 'var(--text-main)' }}>
+              One Parcel <span style={{ color: 'var(--primary-600)' }}>→</span> One Unified View <span style={{ color: 'var(--primary-600)' }}>→</span> Faster Decisions
             </h2>
             <p style={{ fontSize: '0.925rem', color: 'var(--text-muted)', marginTop: '0.75rem', lineHeight: 1.6 }}>
-              Integrated GIS Cadastral infrastructure uniting spatial boundaries, statutory 7/12 records,
-              mutation tracking, and dispute verification across Maharashtra land records.
+              We bridge the gap between complex land systems and ground-level realities to ensure that
+              land governance and use is inclusive, transparent, and just.
             </p>
           </div>
 
           {/* Key DPI Capabilities Pills */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.875rem', color: 'var(--text-main)' }}>
-              <CheckCircle2 size={18} style={{ color: 'var(--primary-400)', flexShrink: 0 }} />
+              <CheckCircle2 size={18} style={{ color: 'var(--primary-600)', flexShrink: 0 }} />
               <span>Unified Cadastral Record Dossier linked to unique <strong>parcel_id</strong></span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.875rem', color: 'var(--text-main)' }}>
-              <CheckCircle2 size={18} style={{ color: 'var(--primary-400)', flexShrink: 0 }} />
+              <CheckCircle2 size={18} style={{ color: 'var(--primary-600)', flexShrink: 0 }} />
               <span>Tamper-evident audit ledger with DSC cryptographic verification</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.875rem', color: 'var(--primary-400)' }}>
-              <CheckCircle2 size={18} style={{ color: 'var(--primary-400)', flexShrink: 0 }} />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.875rem', color: 'var(--text-main)' }}>
+              <CheckCircle2 size={18} style={{ color: 'var(--primary-600)', flexShrink: 0 }} />
               <span>Role-based portal for Administrators, Tehsildars, Surveyors, & Citizens</span>
             </div>
           </div>
 
           <div style={{
             padding: '0.75rem 1rem',
-            background: 'rgba(56, 189, 248, 0.08)',
-            border: '1px solid rgba(56, 189, 248, 0.2)',
+            background: 'var(--bg-surface-hover)',
+            border: '1px solid var(--border-subtle)',
             borderRadius: 'var(--radius-md)',
             fontSize: '0.8125rem',
-            color: 'var(--accent-blue)',
+            color: 'var(--primary-700)',
             display: 'flex',
             alignItems: 'center',
             gap: '0.6rem',
@@ -137,10 +138,10 @@ export const LoginPage = ({ onLoginSuccess }) => {
         </div>
 
         {/* Right Authentication Card */}
-        <div className="card card-glass" style={{ padding: '2.25rem', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
+        <div className="card" style={{ padding: '2.25rem', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-lg)' }}>
           <div style={{ marginBottom: '1.5rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 700 }}>Portal Sign In</h3>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-main)' }}>Portal Sign In</h3>
               <span className="badge badge-emerald">
                 <ShieldCheck size={13} /> Secure SSO
               </span>
@@ -170,14 +171,22 @@ export const LoginPage = ({ onLoginSuccess }) => {
                       gap: '0.5rem',
                       padding: '0.55rem 0.75rem',
                       borderRadius: 'var(--radius-sm)',
-                      background: 'rgba(15, 23, 42, 0.8)',
-                      border: `1px solid ${r.badgeColor}35`,
+                      background: '#ffffff',
+                      border: `1px solid var(--border-subtle)`,
                       color: 'var(--text-main)',
                       fontSize: '0.75rem',
                       fontWeight: 600,
                       cursor: 'pointer',
                       textAlign: 'left',
                       transition: 'all var(--transition-fast)',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = 'var(--primary-600)';
+                      e.currentTarget.style.background = 'var(--bg-surface-hover)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = 'var(--border-subtle)';
+                      e.currentTarget.style.background = '#ffffff';
                     }}
                   >
                     <Icon size={14} style={{ color: r.badgeColor }} />

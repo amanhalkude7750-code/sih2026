@@ -36,7 +36,7 @@ export const DashboardPage = ({ onNavigateToParcel, onNavigateToTab }) => {
       <div
         className="card"
         style={{
-          background: 'rgba(15, 23, 42, 0.8)',
+          background: '#ffffff',
           borderLeft: `4px solid ${currentRoleMeta.badgeColor}`,
           padding: '1rem 1.25rem',
           display: 'flex',

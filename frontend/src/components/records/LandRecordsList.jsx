@@ -88,8 +88,9 @@ export const LandRecordsList = ({ records = [] }) => {
               key={rec.record_id}
               className="card"
               style={{
-                background: 'rgba(15, 23, 42, 0.7)',
+                background: 'var(--bg-surface)',
                 border: '1px solid var(--border-subtle)',
+                boxShadow: 'var(--shadow-sm)',
                 padding: '1.25rem 1.5rem',
                 display: 'flex',
                 flexDirection: 'column',
@@ -103,8 +104,8 @@ export const LandRecordsList = ({ records = [] }) => {
                       width: '40px',
                       height: '40px',
                       borderRadius: 'var(--radius-md)',
-                      background: rec.digital_signature_verified ? 'rgba(16, 185, 129, 0.15)' : 'rgba(245, 158, 11, 0.15)',
-                      color: rec.digital_signature_verified ? 'var(--primary-400)' : 'var(--accent-amber)',
+                      background: rec.digital_signature_verified ? 'var(--primary-50)' : 'var(--warning-bg)',
+                      color: rec.digital_signature_verified ? 'var(--primary-700)' : 'var(--warning-text)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -119,11 +120,11 @@ export const LandRecordsList = ({ records = [] }) => {
                       <h4 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-main)' }}>
                         {rec.record_type}
                       </h4>
-                      <span className="mono" style={{ fontSize: '0.75rem', color: 'var(--primary-400)', background: 'rgba(16, 185, 129, 0.1)', padding: '0.15rem 0.5rem', borderRadius: '4px' }}>
+                      <span className="mono" style={{ fontSize: '0.75rem', color: 'var(--primary-700)', background: 'var(--primary-50)', border: '1px solid var(--primary-200)', padding: '0.15rem 0.5rem', borderRadius: '4px' }}>
                         #{rec.record_number}
                       </span>
                       {rec.mutation_no && (
-                        <span className="mono" style={{ fontSize: '0.75rem', color: 'var(--accent-blue)', background: 'rgba(56, 189, 248, 0.1)', padding: '0.15rem 0.5rem', borderRadius: '4px' }}>
+                        <span className="mono" style={{ fontSize: '0.75rem', color: 'var(--info-text)', background: 'var(--info-bg)', border: '1px solid #BFDBFE', padding: '0.15rem 0.5rem', borderRadius: '4px' }}>
                           Ferfar #{rec.mutation_no}
                         </span>
                       )}
@@ -141,7 +142,7 @@ export const LandRecordsList = ({ records = [] }) => {
                       <ShieldCheck size={14} /> DSC Cryptographically Signed
                     </span>
                   ) : (
-                    <span className="badge" style={{ background: 'rgba(245, 158, 11, 0.15)', color: 'var(--accent-amber)' }}>
+                    <span className="badge badge-amber" style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
                       <Clock size={14} /> {rec.status}
                     </span>
                   )}
@@ -151,8 +152,8 @@ export const LandRecordsList = ({ records = [] }) => {
               {rec.remarks && (
                 <div
                   style={{
-                    background: 'rgba(255, 255, 255, 0.03)',
-                    borderLeft: '3px solid var(--primary-500)',
+                    background: 'var(--bg-surface-elevated)',
+                    borderLeft: '3px solid var(--primary-600)',
                     padding: '0.65rem 0.85rem',
                     borderRadius: '0 var(--radius-sm) var(--radius-sm) 0',
                     fontSize: '0.8125rem',
@@ -172,7 +173,7 @@ export const LandRecordsList = ({ records = [] }) => {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.35rem',
-                  borderTop: '1px solid rgba(255, 255, 255, 0.04)',
+                  borderTop: '1px solid var(--border-subtle)',
                   paddingTop: '0.5rem',
                 }}
               >

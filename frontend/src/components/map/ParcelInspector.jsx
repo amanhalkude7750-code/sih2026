@@ -23,7 +23,7 @@ export const ParcelInspector = ({
 
   return (
     <div
-      className="card card-glass"
+      className="card"
       style={{
         position: 'absolute',
         bottom: '24px',
@@ -32,7 +32,8 @@ export const ParcelInspector = ({
         width: 'calc(100% - 40px)',
         zIndex: 1000,
         boxShadow: 'var(--shadow-lg)',
-        border: '1px solid rgba(56, 189, 248, 0.4)',
+        border: '1px solid var(--border-subtle)',
+        background: '#ffffff',
         padding: '1.25rem',
         animation: 'slideUp 0.25s ease-out',
       }}
@@ -48,38 +49,34 @@ export const ParcelInspector = ({
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <span className="mono" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--primary-400)' }}>
-              {p.parcel_id}
-            </span>
-            <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-              (Survey #{p.survey_number})
-            </span>
+            <h3 style={{ fontSize: '1.125rem', fontWeight: 800, color: 'var(--text-main)' }}>
+              Survey No {p.survey_number}
+            </h3>
+            <StatusPill status={p.status} />
           </div>
-          <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)', marginTop: '2px' }}>
-            {p.village}, {p.taluka} Taluka, Latur
+          <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '2px' }}>
+            {p.village}, Taluka {p.taluka}
           </div>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-          <StatusPill status={p.status} />
-          <button
-            type="button"
-            className="btn btn-secondary btn-sm"
-            onClick={onClose}
-            style={{ padding: '0.3rem', width: '28px', height: '28px' }}
-          >
-            <X size={14} />
-          </button>
-        </div>
+        <button
+          className="btn btn-secondary btn-sm"
+          onClick={onClose}
+          style={{ padding: '0.25rem', borderRadius: '50%' }}
+          title="Close Inspector"
+        >
+          <X size={14} />
+        </button>
       </div>
 
-      {/* Quick Metrics Grid */}
+      {/* Attributes Mini-Grid */}
       <div
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(2, 1fr)',
           gap: '0.65rem',
-          background: 'rgba(11, 15, 25, 0.5)',
+          background: 'var(--bg-surface-hover)',
+          border: '1px solid var(--border-subtle)',
           padding: '0.75rem',
           borderRadius: 'var(--radius-sm)',
           fontSize: '0.78rem',
@@ -101,7 +98,7 @@ export const ParcelInspector = ({
         {p.primary_owner && (
           <div style={{ gridColumn: 'span 2' }}>
             <div style={{ color: 'var(--text-dim)' }}>Title Holder / Owner</div>
-            <div style={{ fontWeight: 600, color: 'var(--primary-300)' }}>
+            <div style={{ fontWeight: 600, color: 'var(--primary-700)' }}>
               {p.primary_owner}
             </div>
           </div>

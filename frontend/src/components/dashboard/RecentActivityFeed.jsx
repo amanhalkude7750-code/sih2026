@@ -70,12 +70,12 @@ export const RecentActivityFeed = ({ activities = [], onNavigateToParcel }) => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+          borderBottom: '1px solid var(--border-subtle)',
           paddingBottom: '0.75rem',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <Clock size={16} style={{ color: 'var(--primary-400)' }} />
+          <Clock size={16} style={{ color: 'var(--primary-600)' }} />
           <h4 style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-main)' }}>
             Recent Governance Activity
           </h4>
@@ -95,8 +95,8 @@ export const RecentActivityFeed = ({ activities = [], onNavigateToParcel }) => {
             <div
               key={item.id}
               style={{
-                background: 'rgba(0, 0, 0, 0.25)',
-                border: '1px solid rgba(255, 255, 255, 0.04)',
+                background: 'var(--bg-surface-hover)',
+                border: '1px solid var(--border-subtle)',
                 borderRadius: 'var(--radius-sm)',
                 padding: '0.75rem 1rem',
                 display: 'flex',

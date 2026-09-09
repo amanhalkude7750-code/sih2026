@@ -203,7 +203,7 @@ export const AuditTimeline = ({ auditTrail = [], title = 'Chronological Governan
               <div
                 className="card card-hover"
                 style={{
-                  background: 'rgba(15, 23, 42, 0.75)',
+                  background: '#ffffff',
                   border: '1px solid var(--border-subtle)',
                   padding: '1.25rem 1.5rem',
                   display: 'flex',
@@ -325,21 +325,21 @@ export const AuditTimeline = ({ auditTrail = [], title = 'Chronological Governan
                   <div
                     style={{
                       marginTop: '0.5rem',
-                      background: 'rgba(11, 15, 25, 0.6)',
+                      background: 'var(--bg-surface-hover)',
                       borderRadius: 'var(--radius-sm)',
                       padding: '0.85rem',
                       fontSize: '0.75rem',
                       display: 'grid',
                       gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
                       gap: '1rem',
-                      border: '1px solid rgba(255, 255, 255, 0.06)',
+                      border: '1px solid var(--border-subtle)',
                     }}
                   >
                     <div>
                       <div style={{ color: 'var(--text-dim)', fontWeight: 700, marginBottom: '0.25rem' }}>
                         PREVIOUS STATE
                       </div>
-                      <pre className="mono" style={{ color: 'var(--accent-rose)', whiteSpace: 'pre-wrap', margin: 0 }}>
+                      <pre className="mono" style={{ color: 'var(--accent-terracotta)', whiteSpace: 'pre-wrap', margin: 0 }}>
                         {entry.previous_state ? JSON.stringify(entry.previous_state, null, 2) : '(Initial Creation - Null)'}
                       </pre>
                     </div>
@@ -348,7 +348,7 @@ export const AuditTimeline = ({ auditTrail = [], title = 'Chronological Governan
                       <div style={{ color: 'var(--text-dim)', fontWeight: 700, marginBottom: '0.25rem' }}>
                         UPDATED STATE
                       </div>
-                      <pre className="mono" style={{ color: 'var(--primary-400)', whiteSpace: 'pre-wrap', margin: 0 }}>
+                      <pre className="mono" style={{ color: 'var(--primary-700)', whiteSpace: 'pre-wrap', margin: 0 }}>
                         {entry.new_state ? JSON.stringify(entry.new_state, null, 2) : '(No change)'}
                       </pre>
                     </div>

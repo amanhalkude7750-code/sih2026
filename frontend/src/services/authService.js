@@ -13,8 +13,8 @@ export const MOCK_ROLES = {
     name: 'Administrator',
     label: 'State DPI Admin',
     description: 'Full oversight of cadastral spatial database, system audit policies, and integration endpoints.',
-    badgeColor: '#8b5cf6',
-    bgColor: 'rgba(139, 92, 246, 0.15)',
+    badgeColor: '#1B4227',
+    bgColor: '#E2EBE2',
     icon: 'Shield',
     defaultUser: {
       id: 'USR-ADM-01',
@@ -38,8 +38,8 @@ export const MOCK_ROLES = {
     name: 'Revenue Officer',
     label: 'Tehsildar / Talathi',
     description: 'Authority to process Ferfar mutations, issue digitally signed 7/12 extracts, and record encumbrances.',
-    badgeColor: '#10b981',
-    bgColor: 'rgba(16, 185, 129, 0.15)',
+    badgeColor: '#235332',
+    bgColor: '#EAF2EB',
     icon: 'FileCheck',
     defaultUser: {
       id: 'USR-REV-02',
@@ -63,8 +63,8 @@ export const MOCK_ROLES = {
     name: 'Survey Officer',
     label: 'DILR / Cadastral Surveyor',
     description: 'Responsible for ETS electronic demarcation, polygon vertex validation, and GeoJSON cadastral updates.',
-    badgeColor: '#38bdf8',
-    bgColor: 'rgba(56, 189, 248, 0.15)',
+    badgeColor: '#1A6AFF',
+    bgColor: '#EBF2FF',
     icon: 'MapPin',
     defaultUser: {
       id: 'USR-SRV-03',
@@ -88,8 +88,8 @@ export const MOCK_ROLES = {
     name: 'Citizen',
     label: 'Landowner / Applicant',
     description: 'Transparent citizen self-service for title verification, 7/12 downloads, mutation tracking, and dispute alerts.',
-    badgeColor: '#f59e0b',
-    bgColor: 'rgba(245, 158, 11, 0.15)',
+    badgeColor: '#C4841D',
+    bgColor: '#FBF4E8',
     icon: 'User',
     defaultUser: {
       id: 'USR-CTZ-04',

@@ -76,16 +76,16 @@ export const QuickParcelSearch = ({ onSelectParcel, searchInputRef }) => {
         className="card"
         style={{
           padding: '0.85rem 1.25rem',
-          background: 'rgba(15, 23, 42, 0.95)',
-          border: '1px solid rgba(16, 185, 129, 0.35)',
-          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4)',
+          background: '#ffffff',
+          border: '1px solid var(--border-subtle)',
+          boxShadow: 'var(--shadow-sm)',
           display: 'flex',
           flexDirection: 'column',
           gap: '0.65rem',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <Search size={20} style={{ color: 'var(--primary-400)', flexShrink: 0 }} />
+          <Search size={20} style={{ color: 'var(--primary-600)', flexShrink: 0 }} />
           <input
             ref={searchInputRef}
             type="text"
@@ -179,9 +179,9 @@ export const QuickParcelSearch = ({ onSelectParcel, searchInputRef }) => {
             maxHeight: '380px',
             overflowY: 'auto',
             padding: '0.5rem',
-            background: 'rgba(15, 23, 42, 0.98)',
-            border: '1px solid var(--border-focus)',
-            boxShadow: '0 12px 30px rgba(0, 0, 0, 0.6)',
+            background: '#ffffff',
+            border: '1px solid var(--border-subtle)',
+            boxShadow: 'var(--shadow-lg)',
           }}
         >
           {results.length === 0 ? (
@@ -201,7 +201,7 @@ export const QuickParcelSearch = ({ onSelectParcel, searchInputRef }) => {
                   textTransform: 'uppercase',
                   color: 'var(--text-dim)',
                   letterSpacing: '0.05em',
-                  borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+                  borderBottom: '1px solid var(--border-subtle)',
                 }}
               >
                 {results.length} Matching Cadastral Parcels
@@ -226,7 +226,7 @@ export const QuickParcelSearch = ({ onSelectParcel, searchInputRef }) => {
                       background: 'transparent',
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.06)';
+                      e.currentTarget.style.background = 'var(--bg-surface-hover)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.background = 'transparent';

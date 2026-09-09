@@ -21,12 +21,12 @@ export const SelectedParcelLayer = ({ feature, autoZoom = true }) => {
   if (!feature) return null;
 
   const style = {
-    fillColor: '#38bdf8',
+    fillColor: '#1A6AFF',
     weight: 4,
     opacity: 1,
-    color: '#00f2fe',
+    color: '#0D4EC7',
     dashArray: '',
-    fillOpacity: 0.7,
+    fillOpacity: 0.5,
   };
 
   return (

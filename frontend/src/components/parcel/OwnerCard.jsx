@@ -20,10 +20,11 @@ export const OwnerCard = ({ owners = [] }) => {
           key={owner.owner_id}
           className="card"
           style={{
-            background: 'rgba(15, 23, 42, 0.7)',
+            background: 'var(--bg-surface)',
             border: owner.is_primary
-              ? '1px solid rgba(16, 185, 129, 0.4)'
+              ? '1.5px solid var(--primary-400)'
               : '1px solid var(--border-subtle)',
+            boxShadow: 'var(--shadow-sm)',
             padding: '1.25rem 1.5rem',
             display: 'flex',
             flexDirection: 'column',
@@ -38,8 +39,9 @@ export const OwnerCard = ({ owners = [] }) => {
                   width: '42px',
                   height: '42px',
                   borderRadius: '50%',
-                  background: owner.is_primary ? 'rgba(16, 185, 129, 0.2)' : 'rgba(255, 255, 255, 0.05)',
-                  color: owner.is_primary ? 'var(--primary-400)' : 'var(--text-muted)',
+                  background: owner.is_primary ? 'var(--primary-100)' : 'var(--bg-surface-elevated)',
+                  color: owner.is_primary ? 'var(--primary-700)' : 'var(--text-dim)',
+                  border: '1px solid var(--border-subtle)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -73,7 +75,7 @@ export const OwnerCard = ({ owners = [] }) => {
             <div
               style={{
                 textAlign: 'right',
-                background: 'rgba(11, 15, 25, 0.5)',
+                background: 'var(--bg-surface-elevated)',
                 padding: '0.5rem 0.85rem',
                 borderRadius: 'var(--radius-sm)',
                 border: '1px solid var(--border-subtle)',
@@ -82,21 +84,21 @@ export const OwnerCard = ({ owners = [] }) => {
               <div style={{ fontSize: '0.68rem', color: 'var(--text-dim)', textTransform: 'uppercase' }}>
                 Undivided Share
               </div>
-              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--primary-400)' }}>
+              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--primary-700)' }}>
                 {owner.share_percentage}%
               </div>
             </div>
           </div>
 
           {/* Share Progress Bar */}
-          <div style={{ width: '100%', height: '6px', background: 'rgba(255,255,255,0.06)', borderRadius: '3px', overflow: 'hidden' }}>
+          <div style={{ width: '100%', height: '6px', background: 'var(--border-subtle)', borderRadius: '3px', overflow: 'hidden' }}>
             <div
               style={{
                 width: `${owner.share_percentage}%`,
                 height: '100%',
                 background: owner.is_primary
-                  ? 'linear-gradient(90deg, var(--primary-500), var(--primary-400))'
-                  : 'linear-gradient(90deg, var(--accent-blue), #38bdf8)',
+                  ? 'var(--primary-600)'
+                  : 'var(--primary-400)',
                 borderRadius: '3px',
               }}
             />
@@ -110,7 +112,7 @@ export const OwnerCard = ({ owners = [] }) => {
               gap: '0.75rem',
               fontSize: '0.8rem',
               color: 'var(--text-muted)',
-              borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+              borderTop: '1px solid var(--border-subtle)',
               paddingTop: '0.75rem',
             }}
           >
@@ -136,7 +138,7 @@ export const OwnerCard = ({ owners = [] }) => {
             )}
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', gridColumn: 'span 2' }}>
-              <MapPin size={13} style={{ color: 'var(--primary-400)', flexShrink: 0 }} />
+              <MapPin size={13} style={{ color: 'var(--primary-600)', flexShrink: 0 }} />
               <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                 {owner.address}
               </span>

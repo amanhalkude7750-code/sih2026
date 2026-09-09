@@ -78,7 +78,7 @@ export const ParcelOverview = ({
           {/* 1. Who owns it? */}
           <div
             style={{
-              background: 'rgba(15, 23, 42, 0.7)',
+              background: 'var(--bg-surface-elevated)',
               padding: '1rem 1.25rem',
               borderRadius: 'var(--radius-md)',
               border: '1px solid var(--border-subtle)',
@@ -93,8 +93,8 @@ export const ParcelOverview = ({
                   width: '32px',
                   height: '32px',
                   borderRadius: '50%',
-                  background: 'rgba(16, 185, 129, 0.15)',
-                  color: 'var(--primary-400)',
+                  background: 'var(--primary-50)',
+                  color: 'var(--primary-700)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -117,7 +117,7 @@ export const ParcelOverview = ({
           {/* 2. Where is it? */}
           <div
             style={{
-              background: 'rgba(15, 23, 42, 0.7)',
+              background: 'var(--bg-surface-elevated)',
               padding: '1rem 1.25rem',
               borderRadius: 'var(--radius-md)',
               border: '1px solid var(--border-subtle)',
@@ -132,8 +132,8 @@ export const ParcelOverview = ({
                   width: '32px',
                   height: '32px',
                   borderRadius: '50%',
-                  background: 'rgba(56, 189, 248, 0.15)',
-                  color: 'var(--accent-blue)',
+                  background: 'var(--info-bg)',
+                  color: 'var(--info-text)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -156,10 +156,10 @@ export const ParcelOverview = ({
           {/* 3. Are there disputes? */}
           <div
             style={{
-              background: activeDisputes.length > 0 ? 'rgba(239, 68, 68, 0.08)' : 'rgba(15, 23, 42, 0.7)',
+              background: activeDisputes.length > 0 ? 'var(--danger-bg)' : 'var(--bg-surface-elevated)',
               padding: '1rem 1.25rem',
               borderRadius: 'var(--radius-md)',
-              border: activeDisputes.length > 0 ? '1px solid rgba(239, 68, 68, 0.3)' : '1px solid var(--border-subtle)',
+              border: activeDisputes.length > 0 ? '1px solid #EAC8C1' : '1px solid var(--border-subtle)',
             }}
           >
             <div style={{ fontSize: '0.7rem', textTransform: 'uppercase', color: 'var(--text-dim)', fontWeight: 700, marginBottom: '0.35rem' }}>
@@ -171,8 +171,8 @@ export const ParcelOverview = ({
                   width: '32px',
                   height: '32px',
                   borderRadius: '50%',
-                  background: activeDisputes.length > 0 ? 'rgba(239, 68, 68, 0.2)' : 'rgba(16, 185, 129, 0.15)',
-                  color: activeDisputes.length > 0 ? 'var(--accent-rose)' : 'var(--primary-400)',
+                  background: activeDisputes.length > 0 ? '#FBEBE8' : 'var(--primary-50)',
+                  color: activeDisputes.length > 0 ? 'var(--danger-text)' : 'var(--primary-700)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -182,7 +182,7 @@ export const ParcelOverview = ({
                 {activeDisputes.length > 0 ? <AlertTriangle size={16} /> : <CheckCircle2 size={16} />}
               </div>
               <div>
-                <div style={{ fontWeight: 700, color: activeDisputes.length > 0 ? 'var(--accent-rose)' : 'var(--primary-400)', fontSize: '0.925rem' }}>
+                <div style={{ fontWeight: 700, color: activeDisputes.length > 0 ? 'var(--danger-text)' : 'var(--primary-700)', fontSize: '0.925rem' }}>
                   {activeDisputes.length > 0 ? `${activeDisputes.length} Active Litigation Case` : 'Clear Title — Zero Disputes'}
                 </div>
                 <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
@@ -195,7 +195,7 @@ export const ParcelOverview = ({
           {/* 4. What records & documents exist? */}
           <div
             style={{
-              background: 'rgba(15, 23, 42, 0.7)',
+              background: 'var(--bg-surface-elevated)',
               padding: '1rem 1.25rem',
               borderRadius: 'var(--radius-md)',
               border: '1px solid var(--border-subtle)',
@@ -210,8 +210,8 @@ export const ParcelOverview = ({
                   width: '32px',
                   height: '32px',
                   borderRadius: '50%',
-                  background: 'rgba(168, 85, 247, 0.15)',
-                  color: 'var(--accent-purple)',
+                  background: 'var(--primary-50)',
+                  color: 'var(--primary-600)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
