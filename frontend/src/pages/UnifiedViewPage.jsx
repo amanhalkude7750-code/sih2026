@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
-import { useParcelDetail } from '../hooks/useParcelDetail.js';
+import { useParcelSelection } from '../hooks/useParcelSelection.js';
 import { UnifiedRecordView } from '../components/records/UnifiedRecordView.jsx';
 import { LoadingSpinner } from '../components/ui/LoadingSpinner.jsx';
 import { EmptyState } from '../components/ui/EmptyState.jsx';
 import { Search, ChevronDown } from 'lucide-react';
 import { mockParcels } from '../data/mock/parcels.js';
 
-export const UnifiedViewPage = ({ selectedParcelId, onSelectParcel }) => {
-  const [currentId, setCurrentId] = useState(selectedParcelId || 'P001');
+export const UnifiedViewPage = () => {
+  const { selectedParcelId, selectParcel } = useParcelSelection();
+  const currentId = selectedParcelId || 'P001';
   const { unifiedData, loading, error } = useParcelDetail(currentId);
 
   const handleIdChange = (id) => {
-    setCurrentId(id);
-    if (onSelectParcel) onSelectParcel(id);
+    selectParcel(id, { openInspector: true, zoomMap: true });
   };
 
   return (

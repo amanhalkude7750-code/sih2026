@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Search, Filter, RotateCcw, LayoutGrid, List } from 'lucide-react';
 import { useParcels } from '../hooks/useParcels.js';
+import { useParcelSelection } from '../hooks/useParcelSelection.js';
+import { ParcelSearch } from '../components/search/ParcelSearch.jsx';
 import { ParcelCard } from '../components/parcel/ParcelCard.jsx';
 import { LoadingSpinner } from '../components/ui/LoadingSpinner.jsx';
 import { EmptyState } from '../components/ui/EmptyState.jsx';
@@ -8,7 +10,13 @@ import { TALUKAS_LATUR } from '../utils/constants.js';
 
 export const ParcelExplorerPage = ({ onSelectParcel }) => {
   const { parcels, loading, error, filters, updateFilter, resetFilters } = useParcels();
+  const { selectedParcelId, selectParcel } = useParcelSelection();
   const [viewMode, setViewMode] = useState('grid'); // 'grid' | 'table'
+
+  const handleSelect = (parcelId) => {
+    selectParcel(parcelId, { openInspector: true, zoomMap: true });
+    if (onSelectParcel) onSelectParcel(parcelId);
+  };
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
@@ -134,7 +142,7 @@ export const ParcelExplorerPage = ({ onSelectParcel }) => {
             <ParcelCard
               key={parcel.parcel_id}
               parcel={parcel}
-              onSelect={onSelectParcel}
+              onSelect={handleSelect}
             />
           ))}
         </div>
@@ -170,7 +178,7 @@ export const ParcelExplorerPage = ({ onSelectParcel }) => {
                   <td>
                     <button
                       className="btn btn-outline btn-sm"
-                      onClick={() => onSelectParcel && onSelectParcel(p.parcel_id)}
+                      onClick={() => handleSelect(p.parcel_id)}
                     >
                       Unified View
                     </button>

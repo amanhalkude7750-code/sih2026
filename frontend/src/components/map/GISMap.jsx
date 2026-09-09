@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import { gisService, BASEMAP_TILES } from '../../services/gisService.js';
@@ -7,8 +7,10 @@ import { SelectedParcelLayer } from './SelectedParcelLayer.jsx';
 import { LayerControl } from './LayerControl.jsx';
 import { MapControls } from './MapControls.jsx';
 import { ParcelInspector } from './ParcelInspector.jsx';
+import { ParcelSearch } from '../search/ParcelSearch.jsx';
 import { LoadingSpinner } from '../ui/LoadingSpinner.jsx';
-import { Search, Compass, Layers, CheckCircle2 } from 'lucide-react';
+import { Compass } from 'lucide-react';
+import { useParcelSelection } from '../../hooks/useParcelSelection.js';
 import 'leaflet/dist/leaflet.css';
 
 // Fix Leaflet default marker icons issue with Vite bundlers
@@ -19,7 +21,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
 });
 
-// Helper component inside MapContainer to access map instance
+// Helper component inside MapContainer to capture map instance
 const MapController = ({ onMapReady }) => {
   const map = useMap();
   useEffect(() => {
@@ -28,13 +30,17 @@ const MapController = ({ onMapReady }) => {
   return null;
 };
 
-export const GISMap = ({
-  selectedParcelId: propSelectedParcelId,
-  onSelectParcel: propOnSelectParcel,
-  onOpenUnifiedView,
-}) => {
+export const GISMap = ({ onOpenUnifiedView }) => {
+  const {
+    selectedParcelId,
+    isInspectorOpen,
+    setIsInspectorOpen,
+    zoomRequest,
+    selectParcel,
+    clearSelection,
+  } = useParcelSelection();
+
   const [geoJsonData, setGeoJsonData] = useState(null);
-  const [selectedParcelId, setSelectedParcelId] = useState(propSelectedParcelId || null);
   const [selectedFeature, setSelectedFeature] = useState(null);
   const [activeBasemap, setActiveBasemap] = useState('satellite');
   const [mapInstance, setMapInstance] = useState(null);
@@ -53,23 +59,11 @@ export const GISMap = ({
     async function loadData() {
       try {
         const rawGeo = await gisService.getCadastralGeoJSON();
-        // Enrich each feature
         const enriched = {
           ...rawGeo,
           features: rawGeo.features.map((f) => gisService.getEnrichedFeature(f)),
         };
         setGeoJsonData(enriched);
-
-        // If a parcel_id was provided as prop, highlight it
-        if (propSelectedParcelId) {
-          const matched = enriched.features.find(
-            (f) => f.properties.parcel_id === propSelectedParcelId
-          );
-          if (matched) {
-            setSelectedParcelId(propSelectedParcelId);
-            setSelectedFeature(matched);
-          }
-        }
       } catch (err) {
         console.error('Failed to load Cadastral GeoJSON', err);
       } finally {
@@ -77,13 +71,42 @@ export const GISMap = ({
       }
     }
     loadData();
-  }, [propSelectedParcelId]);
+  }, []);
 
-  // Handle parcel selection from click or dropdown
+  // Synchronize selectedFeature whenever selectedParcelId or geoJsonData changes
+  useEffect(() => {
+    if (geoJsonData && selectedParcelId) {
+      const feat = geoJsonData.features.find(
+        (f) => f.properties.parcel_id.toUpperCase() === selectedParcelId.toUpperCase()
+      );
+      setSelectedFeature(feat || null);
+    } else {
+      setSelectedFeature(null);
+    }
+  }, [selectedParcelId, geoJsonData]);
+
+  // Synchronize zoom whenever a zoomRequest is triggered from search or map controls
+  useEffect(() => {
+    if (zoomRequest && mapInstance && geoJsonData) {
+      const feat = geoJsonData.features.find(
+        (f) => f.properties.parcel_id.toUpperCase() === zoomRequest.parcelId.toUpperCase()
+      );
+      if (feat) {
+        const bounds = gisService.getFeatureBounds(feat);
+        if (bounds) {
+          mapInstance.flyToBounds(bounds, {
+            padding: [90, 90],
+            maxZoom: 17,
+            duration: 0.8,
+          });
+        }
+      }
+    }
+  }, [zoomRequest, mapInstance, geoJsonData]);
+
+  // Map polygon click handler - updates single source of truth
   const handleParcelClick = (parcelId, feature) => {
-    setSelectedParcelId(parcelId);
-    setSelectedFeature(feature);
-    if (propOnSelectParcel) propOnSelectParcel(parcelId);
+    selectParcel(parcelId, { openInspector: true, zoomMap: true });
   };
 
   // Zoom to selected parcel
@@ -130,8 +153,6 @@ export const GISMap = ({
   }
 
   const currentBasemap = BASEMAP_TILES[activeBasemap] || BASEMAP_TILES.satellite;
-
-  // Latur Center default
   const defaultCenter = [18.35, 76.62];
 
   return (
@@ -148,7 +169,7 @@ export const GISMap = ({
         background: '#0b0f19',
       }}
     >
-      {/* Top Cadastral Jump Bar */}
+      {/* Top Search & Cadastral HUD Bar */}
       <div
         style={{
           position: 'absolute',
@@ -157,54 +178,15 @@ export const GISMap = ({
           zIndex: 1000,
           display: 'flex',
           alignItems: 'center',
-          gap: '0.6rem',
+          gap: '0.75rem',
+          maxWidth: 'calc(100% - 240px)',
         }}
       >
-        <div
-          className="card card-glass"
-          style={{
-            padding: '0.35rem 0.65rem',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            borderRadius: 'var(--radius-md)',
-            boxShadow: 'var(--shadow-md)',
-          }}
-        >
-          <Search size={14} style={{ color: 'var(--text-dim)' }} />
-          <select
-            className="select-field"
-            value={selectedParcelId || ''}
-            onChange={(e) => {
-              const pId = e.target.value;
-              if (!pId) {
-                setSelectedParcelId(null);
-                setSelectedFeature(null);
-                return;
-              }
-              const feat = geoJsonData?.features.find(
-                (f) => f.properties.parcel_id === pId
-              );
-              if (feat) {
-                handleParcelClick(pId, feat);
-              }
-            }}
-            style={{
-              background: 'transparent',
-              border: 'none',
-              padding: '0.2rem 0.5rem',
-              fontSize: '0.8rem',
-              fontWeight: 600,
-              color: 'var(--primary-400)',
-            }}
-          >
-            <option value="">Jump to Parcel...</option>
-            {geoJsonData?.features.map((f) => (
-              <option key={f.properties.parcel_id} value={f.properties.parcel_id}>
-                {f.properties.parcel_id} — Survey {f.properties.survey_number} ({f.properties.village})
-              </option>
-            ))}
-          </select>
+        <div style={{ width: '300px' }}>
+          <ParcelSearch
+            placeholder="Search ID, Survey, Owner..."
+            width="100%"
+          />
         </div>
 
         <div
@@ -215,9 +197,13 @@ export const GISMap = ({
             background: 'rgba(15, 23, 42, 0.9)',
             backdropFilter: 'blur(8px)',
             border: '1px solid var(--border-subtle)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.4rem',
+            whiteSpace: 'nowrap',
           }}
         >
-          <Compass size={13} /> Latur Cadastral CRS84
+          <Compass size={13} /> Latur CRS84
         </div>
       </div>
 
@@ -248,7 +234,7 @@ export const GISMap = ({
         />
 
         {/* Selected Highlight Layer */}
-        <SelectedParcelLayer feature={selectedFeature} autoZoom={true} />
+        <SelectedParcelLayer feature={selectedFeature} autoZoom={false} />
 
         {/* Custom Controls */}
         <MapControls
@@ -267,13 +253,10 @@ export const GISMap = ({
       </MapContainer>
 
       {/* Clicked Parcel Inspector Floating Card */}
-      {selectedFeature && (
+      {isInspectorOpen && selectedFeature && (
         <ParcelInspector
           feature={selectedFeature}
-          onClose={() => {
-            setSelectedParcelId(null);
-            setSelectedFeature(null);
-          }}
+          onClose={() => setIsInspectorOpen(false)}
           onZoomTo={handleZoomToSelected}
           onOpenUnifiedView={(id) => {
             if (onOpenUnifiedView) onOpenUnifiedView(id);

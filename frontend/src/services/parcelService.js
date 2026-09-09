@@ -239,22 +239,43 @@ export const parcelService = {
     const query = term.toLowerCase().trim();
 
     if (ENV.USE_MOCK_DATA) {
-      await delay();
-      // Find matching owners first
-      const matchingOwnerParcelIds = new Set(
-        mockOwners
-          .filter((o) => o.full_name.toLowerCase().includes(query))
-          .map((o) => o.parcel_id)
-      );
+      const matchingOwnerMap = new Map();
+      mockOwners.forEach((o) => {
+        if (o.full_name.toLowerCase().includes(query)) {
+          matchingOwnerMap.set(o.parcel_id, o.full_name);
+        }
+      });
 
-      const matchedParcels = mockParcels.filter(
-        (p) =>
-          p.parcel_id.toLowerCase().includes(query) ||
-          p.survey_number.toLowerCase().includes(query) ||
-          p.village.toLowerCase().includes(query) ||
-          p.taluka.toLowerCase().includes(query) ||
-          matchingOwnerParcelIds.has(p.parcel_id)
-      );
+      const matchedParcels = mockParcels
+        .filter(
+          (p) =>
+            p.parcel_id.toLowerCase().includes(query) ||
+            p.survey_number.toLowerCase().includes(query) ||
+            p.village.toLowerCase().includes(query) ||
+            p.taluka.toLowerCase().includes(query) ||
+            matchingOwnerMap.has(p.parcel_id)
+        )
+        .map((p) => {
+          const primaryOwner = mockOwners.find((o) => o.parcel_id === p.parcel_id && o.is_primary);
+          let matchReason = 'Parcel Match';
+          if (p.parcel_id.toLowerCase() === query) {
+            matchReason = `Exact ID: ${p.parcel_id}`;
+          } else if (p.survey_number.toLowerCase().includes(query)) {
+            matchReason = `Survey #${p.survey_number}`;
+          } else if (matchingOwnerMap.has(p.parcel_id)) {
+            matchReason = `Owner: ${matchingOwnerMap.get(p.parcel_id)}`;
+          } else if (p.village.toLowerCase().includes(query)) {
+            matchReason = `Village: ${p.village}`;
+          } else if (p.taluka.toLowerCase().includes(query)) {
+            matchReason = `Taluka: ${p.taluka}`;
+          }
+
+          return {
+            ...p,
+            primary_owner: primaryOwner ? primaryOwner.full_name : matchingOwnerMap.get(p.parcel_id) || 'State / Common',
+            match_reason: matchReason,
+          };
+        });
 
       return {
         data: matchedParcels,

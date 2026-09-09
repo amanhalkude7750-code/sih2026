@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AuthProvider, useAuth } from './context/AuthContext.jsx';
+import { ParcelProvider, useParcelSelection } from './context/ParcelContext.jsx';
 import { AppLayout } from './components/layout/AppLayout.jsx';
 import { LoginPage } from './pages/LoginPage.jsx';
 import { RoleSelectionPage } from './pages/RoleSelectionPage.jsx';
@@ -11,10 +12,10 @@ import { GisMapPage } from './pages/GisMapPage.jsx';
 
 function MainApp() {
   const { isAuthenticated } = useAuth();
+  const { selectParcel } = useParcelSelection();
   
   // Navigation & step states persisted in hash / state
   const [appStep, setAppStep] = useState(() => {
-    // If already logged in from a previous session, go straight to dashboard
     return localStorage.getItem('geoland_auth_session') ? 'dashboard' : 'login';
   });
 
@@ -24,8 +25,6 @@ function MainApp() {
       ? hash
       : 'dashboard';
   });
-
-  const [selectedParcelId, setSelectedParcelId] = useState('P001');
 
   // Keep URL hash synchronized for smooth back/forward and refresh resilience
   useEffect(() => {
@@ -58,7 +57,7 @@ function MainApp() {
 
   // Step 3: Application Shell & Dashboard Routes
   const handleNavigateToParcel = (parcelId) => {
-    setSelectedParcelId(parcelId);
+    selectParcel(parcelId, { openInspector: true, zoomMap: true });
     setActiveTab('unified');
   };
 
@@ -74,10 +73,7 @@ function MainApp() {
         <ParcelExplorerPage onSelectParcel={handleNavigateToParcel} />
       )}
       {activeTab === 'unified' && (
-        <UnifiedViewPage
-          selectedParcelId={selectedParcelId}
-          onSelectParcel={setSelectedParcelId}
-        />
+        <UnifiedViewPage />
       )}
       {activeTab === 'gis-map' && (
         <GisMapPage onOpenUnifiedView={handleNavigateToParcel} />
@@ -90,7 +86,9 @@ function MainApp() {
 export default function App() {
   return (
     <AuthProvider>
-      <MainApp />
+      <ParcelProvider>
+        <MainApp />
+      </ParcelProvider>
     </AuthProvider>
   );
 }

@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth.js';
 import { ENV } from '../../config/env.js';
+import { ParcelSearch } from '../search/ParcelSearch.jsx';
 
 export const Header = ({ activePageTitle, onToggleMobileMenu, onOpenRoleModal }) => {
   const { user, role, logout, switchRole, rolesMeta } = useAuth();
@@ -45,6 +46,14 @@ export const Header = ({ activePageTitle, onToggleMobileMenu, onOpenRoleModal })
             {ENV.APP_NAME} • {user?.jurisdiction || 'Latur Cadastral Division'}
           </div>
         </div>
+      </div>
+
+      {/* Center/Right Global Parcel Search */}
+      <div style={{ flex: 1, maxWidth: '320px', margin: '0 1rem' }}>
+        <ParcelSearch
+          placeholder="Search ID, Survey, Owner..."
+          width="100%"
+        />
       </div>
 
       {/* Right Controls: Role Switcher, Profile, Logout */}
