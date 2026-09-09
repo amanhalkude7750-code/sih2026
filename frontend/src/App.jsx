@@ -67,7 +67,10 @@ function MainApp() {
       onSelectTab={setActiveTab}
     >
       {activeTab === 'dashboard' && (
-        <DashboardPage onNavigateToParcel={handleNavigateToParcel} />
+        <DashboardPage
+          onNavigateToParcel={handleNavigateToParcel}
+          onNavigateToTab={setActiveTab}
+        />
       )}
       {activeTab === 'explorer' && (
         <ParcelExplorerPage onSelectParcel={handleNavigateToParcel} />

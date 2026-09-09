@@ -209,18 +209,26 @@ export const parcelService = {
     if (ENV.USE_MOCK_DATA) {
       await delay();
       const totalParcels = mockParcels.length;
-      const totalAreaHectares = mockParcels.reduce((acc, p) => acc + (p.area || 0), 0);
-      const activeDisputes = mockDisputes.filter((d) => d.status !== 'Disposed / Resolved').length;
+      const activeParcels = mockParcels.filter((p) => p.status === 'Active').length;
+      const disputedParcels = mockParcels.filter((p) => p.status === 'Disputed').length;
       const pendingMutations = mockParcels.filter((p) => p.status === 'Pending Mutation').length;
+      const pendingRecords = mockLandRecords.filter((r) => !r.digital_signature_verified || r.status === 'Under Mutation' || r.status === 'Draft').length + pendingMutations;
+      const totalTransactions = mockTransactions.length;
+      const totalAreaHectares = mockParcels.reduce((acc, p) => acc + (p.area || 0), 0);
+      const activeDisputes = mockDisputes.filter((d) => d.status !== 'Disposed / Resolved' && d.status !== 'Resolved').length;
       const verifiedRecords = mockLandRecords.filter((r) => r.digital_signature_verified).length;
       const totalValuation = mockParcels.reduce((acc, p) => acc + (p.market_valuation_inr || 0), 0);
 
       return {
         data: {
           totalParcels,
+          activeParcels,
+          disputedParcels,
+          pendingMutations,
+          pendingRecords,
+          totalTransactions,
           totalAreaHectares: parseFloat(totalAreaHectares.toFixed(2)),
           activeDisputes,
-          pendingMutations,
           verifiedRecords,
           totalValuation,
         },
@@ -229,6 +237,41 @@ export const parcelService = {
     }
 
     return await api.get('/stats/governance');
+  },
+
+  /**
+   * Fetch Combined Recent Activity Stream (Audit Events & Transactions)
+   */
+  async getRecentActivity(limit = 6) {
+    if (ENV.USE_MOCK_DATA) {
+      await delay();
+      const events = [
+        ...mockAuditEntries.map((a) => ({
+          id: a.audit_id,
+          parcel_id: a.parcel_id,
+          type: 'AUDIT',
+          action: a.action,
+          actor: a.actor || a.performed_by || 'Officer',
+          role: a.role || a.user_role || 'Authority',
+          description: a.description || a.changes_summary,
+          timestamp: a.timestamp,
+        })),
+        ...mockTransactions.map((t) => ({
+          id: t.transaction_id,
+          parcel_id: t.parcel_id,
+          type: 'TRANSACTION',
+          action: t.transaction_type,
+          actor: t.from_party,
+          role: 'Sub-Registrar SRO',
+          description: `Transferred to ${t.to_party} (Reg #${t.registration_number})`,
+          timestamp: t.transaction_date,
+        })),
+      ].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+      return { data: events.slice(0, limit), status: 'success' };
+    }
+
+    return await api.get('/activity/recent');
   },
 
   /**

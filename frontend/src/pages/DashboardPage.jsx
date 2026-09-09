@@ -4,7 +4,7 @@ import { PageContainer } from '../components/layout/PageContainer.jsx';
 import { useAuth } from '../hooks/useAuth.js';
 import { ShieldCheck, FileCheck, MapPin, User, Sparkles } from 'lucide-react';
 
-export const DashboardPage = ({ onNavigateToParcel }) => {
+export const DashboardPage = ({ onNavigateToParcel, onNavigateToTab }) => {
   const { user, role, rolesMeta } = useAuth();
   const currentRoleMeta = rolesMeta[role] || rolesMeta.Administrator;
 
@@ -64,7 +64,10 @@ export const DashboardPage = ({ onNavigateToParcel }) => {
       </div>
 
       {/* Main Governance Overview Engine */}
-      <GovernanceOverview onNavigateToParcel={onNavigateToParcel} />
+      <GovernanceOverview
+        onNavigateToParcel={onNavigateToParcel}
+        onOpenFullGIS={() => onNavigateToTab && onNavigateToTab('gis-map')}
+      />
     </PageContainer>
   );
 };
