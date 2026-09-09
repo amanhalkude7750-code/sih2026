@@ -24,7 +24,7 @@ export const Sidebar = ({ activeTab, onSelectTab, onOpenRoleModal }) => {
     { id: 'dashboard', label: 'Governance Dashboard', icon: LayoutDashboard },
     { id: 'explorer', label: 'Cadastral Explorer', icon: Layers },
     { id: 'unified', label: 'Unified Parcel Dossier', icon: Landmark },
-    { id: 'gis-map', label: 'GIS Cadastral Map', icon: MapPin, badge: 'Module 3' },
+    { id: 'gis-map', label: 'GIS Cadastral Map', icon: MapPin, badge: 'Live GIS' },
     { id: 'audit', label: 'Tamper Audit Trail', icon: History },
   ];
 

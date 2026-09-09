@@ -79,7 +79,9 @@ function MainApp() {
           onSelectParcel={setSelectedParcelId}
         />
       )}
-      {activeTab === 'gis-map' && <GisMapPage />}
+      {activeTab === 'gis-map' && (
+        <GisMapPage onOpenUnifiedView={handleNavigateToParcel} />
+      )}
       {activeTab === 'audit' && <AuditPage />}
     </AppLayout>
   );
